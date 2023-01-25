@@ -11,6 +11,6 @@ export class BarraPesquisaComponent {
   constructor(private router: Router) {}
 
   onSubmit(form:NgForm){
-    this.router.navigate(['Buscar', form.value.search]);
+    this.router.navigate(['search', form.value.search]);
   }
 }

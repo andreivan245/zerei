@@ -1,14 +1,34 @@
 <div class="filtros">
     <mat-form-field>
         <mat-label>Classificar</mat-label>
-        <mat-select panelClass="selecionado-classificar" [(ngModel)]="sort">
-            <mat-option value="nome">Nome</mat-option>
-            <mat-option value="-lancado">Lançado</mat-option>
-            <mat-option value="-adicionado">Adicionado</mat-option>
-            <mat-option value="-criado">Criado</mat-option>
-            <mat-option value="-atualizado">Atualizado</mat-option>
-            <mat-option value="-classificacao">Classificação</mat-option>
+        <mat-select panelClass="selecionado-classificar" [(ngModel)]="sort" (selectionChange)="searchGames(sort)">
+            <mat-option value="name">Nome</mat-option>
+            <mat-option value="-released">Lançado</mat-option>
+            <mat-option value="-added">Adicionado</mat-option>
+            <mat-option value="-created">Criado</mat-option>
+            <mat-option value="-updated">Atualizado</mat-option>
+            <mat-option value="-rating">Classificação</mat-option>
             <mat-option value="metacritic">Metacritic</mat-option>
         </mat-select>
     </mat-form-field>
+</div>
+
+<div class="jogos">
+    <ng-container *ngFor="let jogo of games">
+        <div class="jogo" (click)="openGameDetails(jogo.id)">
+            <div class="jogo-thumb-container">
+                <img *ngIf="jogo.background_image" src="{{ jogo.background_image }}" alt="thumbnail" 
+                    class="jogo-thumbnail" />
+                <p *ngIf="!jogo.background_image">Sem imagem</p>
+            </div>
+            <div class="jogo-descricao">
+                <p class="jogo-nome">{{ jogo.name }}</p>
+                <div class="jogo-plataformas">
+                    <img *ngFor="let plataformaJogo of jogo.parent_platforms" class="jogo-plataforma"
+                        src="assets/images/platforms/{{ plataformaJogo.platform.slug }}.svg"
+                        alt="{{ plataformaJogo.platform.slug }}"/>
+                </div>
+            </div>
+        </div>
+    </ng-container>
 </div>
