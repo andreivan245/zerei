@@ -16,9 +16,9 @@ export class HomeComponent {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params: Params) => {
       if (params['game-search']) {
-        this.searchGames('metacrit', params['game-search']);
+        this.searchGames('-metacritic', params['game-search']);
       } else {
-        this.searchGames('metacrit');
+        this.searchGames('');
       }
     });
   }
@@ -27,11 +27,20 @@ export class HomeComponent {
     this.router.navigate(['details', id]);
   }
   searchGames(sort: string, search?: string): void {
+    
+    this.activatedRoute.params.subscribe((params: Params) => {
+      if (params['game-search']) {
+        search = params['game-search'];
+        
+      }
+      });
+     
     this.httpService
-      .getGameList(sort,search)
+      .getGameList(sort, search)
       .subscribe((gameList: APIResponse<Game>) => {
         this.games = gameList.results;
         console.log(gameList);
+        console.log(search);console.log(sort);
       });
   }
 
