@@ -72,3 +72,29 @@
     width: 20px;
     margin-right: 10px;
 }
+
+.next,.previous {
+    text-align: center;
+    background-color: #202020;
+    border-radius: 5px;
+    color:#fff;
+    cursor: pointer; 
+    font-size: 20px;
+    font-weight: 700;
+    margin: 5px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.next > mat-icon {
+    padding-left: 3.5px;
+    font-weight: 700;
+}
+
+.previous > mat-icon {
+
+    padding-right: 3.5px;
+    font-weight: 700;
+}

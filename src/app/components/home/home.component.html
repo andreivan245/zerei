@@ -30,8 +30,11 @@
                 </div>
             </div>
         </div>
+        
     </ng-container>
+    <button mat-fab extended *ngIf="previousPage != null" (click)="onPrevious()" class="previous" ><mat-icon>arrow_back</mat-icon> Anterior </button>
+    <button mat-fab extended fontIcon="home" *ngIf="nextPage != null" (click)="onNext()" class="next">Próximo <mat-icon>arrow_forward</mat-icon></button>
+    
+
 </div>
 
-<div *ngIf="nextPage != null" (click)="onNext()" class="next">Próximo </div>
-<div *ngIf="previousPage != null" (click)="onPrevious()" class="previous" >Anterior </div>

@@ -32,7 +32,7 @@ export class HomeComponent {
 
   selectionNewSort(){
     this.activatedRoute.queryParamMap.subscribe(params => {
-      this.router.navigate(['/games'], { queryParams: { page: this.numberPage, ordering: this.sort, search: params.get('search')  } });
+      this.router.navigate(['/games'], { queryParams: { page: '1', ordering: this.sort, search: params.get('search')  } });
   });
   }
 
