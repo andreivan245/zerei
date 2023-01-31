@@ -11,6 +11,6 @@ export class BarraPesquisaComponent {
   constructor(private router: Router) {}
 
   onSubmit(form:NgForm){
-    this.router.navigate(['search', form.value.search]);
+    this.router.navigate(['/games'], { queryParams: { page: '1', ordering: '-metacritic', search: form.value.search  } });
   }
 }

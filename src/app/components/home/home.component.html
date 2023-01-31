@@ -1,7 +1,7 @@
 <div class="filtros">
     <mat-form-field>
         <mat-label>Classificar</mat-label>
-        <mat-select panelClass="selecionado-classificar" [(ngModel)]="sort" (selectionChange)="searchGames(sort)">
+        <mat-select panelClass="selecionado-classificar" [(ngModel)]="sort" (selectionChange)="getGames(sort); selectionNewSort()"   >
             <mat-option value="name">Nome</mat-option>
             <mat-option value="-released">Lançado</mat-option>
             <mat-option value="-added">Adicionado</mat-option>
@@ -32,3 +32,6 @@
         </div>
     </ng-container>
 </div>
+
+<div *ngIf="nextPage != null" (click)="onNext()" class="next">Próximo </div>
+<div *ngIf="previousPage != null" (click)="onPrevious()" class="previous" >Anterior </div>

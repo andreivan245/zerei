@@ -12,6 +12,7 @@ export class HttpHeadersInterceptor implements HttpInterceptor {
                 key: 'eb1e3563a2674def80b22e4f396f2ad4',
             }
         });
+    
         return next.handle(req);
     }
 }
