@@ -15,7 +15,7 @@ export interface Game {
 
 }
 
-export interface APIResponse<T> { results: Array<T>, next: string, previous: string }
+export interface APIResponse<T> { results: Array<T>, next: string, previous: string, count: number }
 
 interface Genre { name: string }
 

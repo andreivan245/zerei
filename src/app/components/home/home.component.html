@@ -14,7 +14,7 @@
 </div>
 
 <div class="jogos">
-    <ng-container *ngFor="let jogo of games">
+    <ng-container *ngFor="let jogo of games | paginate: { itemsPerPage: 20, currentPage: numberPage, totalItems: totalPages }" >
         <div class="jogo" (click)="openGameDetails(jogo.id)">
             <div class="jogo-thumb-container">
                 <img *ngIf="jogo.background_image" src="{{ jogo.background_image }}" alt="thumbnail" 
@@ -32,8 +32,10 @@
         </div>
         
     </ng-container>
-    <button mat-fab extended *ngIf="previousPage != null" (click)="onPrevious()" class="previous" ><mat-icon>arrow_back</mat-icon> Anterior </button>
-    <button mat-fab extended fontIcon="home" *ngIf="nextPage != null" (click)="onNext()" class="next">Próximo <mat-icon>arrow_forward</mat-icon></button>
+
+        <pagination-controls  (pageChange)="getPage($event)" ></pagination-controls>
+        <pagination-template ></pagination-template>
+    
     
 
 </div>

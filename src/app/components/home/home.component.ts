@@ -15,7 +15,7 @@ export class HomeComponent {
   public nextPage!: string;
   public numberPage:  any = 1;
   public firstPage: boolean = true;
- 
+  public totalPages!: number;
   
 
   constructor(private httpService: HttpService, private router: Router, private activatedRoute: ActivatedRoute) {}
@@ -37,7 +37,7 @@ export class HomeComponent {
   }
 
   getGames(sort: string, search?: any):void {
-    console.log(this.sort)
+    
     
      this.activatedRoute.queryParamMap.subscribe(params => {
         if(params.get('page')){
@@ -53,34 +53,22 @@ export class HomeComponent {
         this.games = gameList.results;
         this.nextPage = gameList.next;
         this.previousPage = gameList.previous;
-        console.log(gameList)
-        console.log(this.nextPage)
-        console.log(this.previousPage)
+        this.totalPages = gameList.count;
+        
+        
         
       });
       
   }
 
-
-  onNext(){
-
-    this.numberPage++;
-    console.log(this.numberPage)
-    this.activatedRoute.queryParamMap.subscribe(params => {
-      this.router.navigate(['/games'], { queryParams: { page: this.numberPage, ordering: this.sort, search: params.get('search')  } });
-      this.getGames(this.sort, params.get('search'));
-  });
+  getPage(event: any){
     
-
-  }
-
-  onPrevious(){
-
-    this.numberPage--;
+    this.numberPage = event;
+    
     this.activatedRoute.queryParamMap.subscribe(params => {
       this.router.navigate(['/games'], { queryParams: { page: this.numberPage, ordering: this.sort, search: params.get('search')  } });
   });
-
   }
+
 
 }
