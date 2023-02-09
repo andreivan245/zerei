@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { APIResponse, Game } from 'src/app/models';
+import { GoogleLoginProvider, SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { HttpService } from 'src/app/services/http.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   public sort: string= '-added';
   public games: Array<Game> = [];
   public previousPage!: string;
@@ -17,13 +18,16 @@ export class HomeComponent {
   public firstPage: boolean = true;
   public totalPages!: number;
   
+ 
 
-  constructor(private httpService: HttpService, private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor(private httpService: HttpService, private router: Router, private activatedRoute: ActivatedRoute, private socialAuthService: SocialAuthService) {}
   ngOnInit(): void {
     
     this.activatedRoute.queryParamMap.subscribe(params => {
         this.getGames(this.sort,params.get('search'));
     });
+
+    
   }
   
   openGameDetails(id: string): void {
@@ -69,6 +73,6 @@ export class HomeComponent {
       this.router.navigate(['/games'], { queryParams: { page: this.numberPage, ordering: this.sort, search: params.get('search')  } });
   });
   }
-
-
+ 
+  
 }

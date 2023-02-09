@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,20 +12,22 @@ import { MatTabsModule } from '@angular/material/tabs'
 import { MatIconModule } from '@angular/material/icon'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatSelectModule } from '@angular/material/select';
-import { BarraPesquisaComponent } from './components/barra-pesquisa/barra-pesquisa.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { HomeComponent } from './components/home/home.component'
 import { HttpHeadersInterceptor } from './interceptors/http-headers.interceptor'; 
 import { HttpErrorsInterceptor } from './interceptors/http-errors.interceptor';
 import { DetailsComponent } from './components/details/details.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { PerfilComponent } from './components/perfil/perfil.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    BarraPesquisaComponent,
+    SearchBarComponent,
     HomeComponent,
     DetailsComponent,
+    PerfilComponent,
     
   ],
   imports: [
@@ -38,7 +41,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     MatSelectModule,
     MatTabsModule,
     MatIconModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    SocialLoginModule
   ],
   providers: [
     {
@@ -50,7 +54,21 @@ import {NgxPaginationModule} from 'ngx-pagination';
       provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorsInterceptor,
       multi: true,
-    }
+    },
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue:{
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '601865469645-9571oi12kmgh7srkj4nsluqlf0ql93g2.apps.googleusercontent.com'
+            ),
+          },
+        ],
+      } as SocialAuthServiceConfig,
+    },
 ],
   bootstrap: [AppComponent]
 })

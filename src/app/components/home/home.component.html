@@ -1,4 +1,4 @@
-<div class="filtros">
+<div class="filters">
     <mat-form-field>
         <mat-label>Classificar</mat-label>
         <mat-select panelClass="selecionado-classificar" [(ngModel)]="sort" (selectionChange)="getGames(sort); selectionNewSort()"   >
@@ -13,30 +13,28 @@
     </mat-form-field>
 </div>
 
-<div class="jogos">
-    <ng-container *ngFor="let jogo of games | paginate: { itemsPerPage: 20, currentPage: numberPage, totalItems: totalPages }" >
-        <div class="jogo" (click)="openGameDetails(jogo.id)">
-            <div class="jogo-thumb-container">
-                <img *ngIf="jogo.background_image" src="{{ jogo.background_image }}" alt="thumbnail" 
-                    class="jogo-thumbnail" />
-                <p *ngIf="!jogo.background_image">Sem imagem</p>
+<div class="games">
+    <ng-container *ngFor="let game of games | paginate: { itemsPerPage: 20, currentPage: numberPage, totalItems: totalPages }" >
+        <div class="game" (click)="openGameDetails(game.id)">
+            <div class="game-thumb-container">
+                <img *ngIf="game.background_image" src="{{ game.background_image }}" alt="thumbnail" 
+                    class="game-thumbnail" />
+                <p *ngIf="!game.background_image">Sem imagem</p>
             </div>
-            <div class="jogo-descricao">
-                <p class="jogo-nome">{{ jogo.name }}</p>
-                <div class="jogo-plataformas">
-                    <img *ngFor="let plataformaJogo of jogo.parent_platforms" class="jogo-plataforma"
-                        src="assets/images/platforms/{{ plataformaJogo.platform.slug }}.svg"
-                        alt="{{ plataformaJogo.platform.slug }}"/>
+            <div class="game-description">
+                <p class="game-name">{{ game.name }}</p>
+                <div class="game-plataforms">
+                    <img *ngFor="let plataformGame of game.parent_platforms" class="game-plataform"
+                        src="assets/images/platforms/{{ plataformGame.platform.slug }}.svg"
+                        alt="{{ plataformGame.platform.slug }}"/>
                 </div>
             </div>
         </div>
         
     </ng-container>
+  
+        <pagination-controls  (pageChange)="getPage($event)" class="pagination"></pagination-controls>
+        
+        
 
-        <pagination-controls  (pageChange)="getPage($event)" ></pagination-controls>
-        <pagination-template ></pagination-template>
-    
-    
-
-</div>
 

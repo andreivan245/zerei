@@ -3,7 +3,7 @@
     height: 60px;
     background-color: #687383;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-around;
     align-items: center;
     position: fixed;
     top: 0;
@@ -12,11 +12,6 @@
     
 }
 
-.form {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
 
 .input {
     margin-left: 10px;
@@ -55,3 +50,4 @@ button:hover {
     cursor: pointer;
     text-decoration: none;
 }
+

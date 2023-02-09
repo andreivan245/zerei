@@ -1,10 +1,10 @@
-.filtros {
+.filters {
     max-width: 1200px;
     margin: 20px auto;
     padding-left: 20px;
 }
 
-.jogos {
+.games {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -12,7 +12,7 @@
     margin: 20px auto;
 }
 
-.jogo {
+.game {
    width: 280px;
    margin: 10px;
    height: 330px;
@@ -24,12 +24,12 @@
    cursor: pointer; 
 }
 
-.jogo:hover {
+.game:hover {
     box-shadow: 4px 4px 11px 6px rgb(200 152 44 / 46%);
     transform: translateY(-3px);
 }
 
-.jogo-thumb-container {
+.game-thumb-container {
     background-color: #000;
     position: relative;
     height: 172px;
@@ -37,7 +37,7 @@
     text-align: center;
 }
 
-.jogo-thumbnail{
+.game-thumbnail{
     position: absolute;
     top: 0;
     left: 0;
@@ -46,7 +46,7 @@
     height: 172px;
 }
 
-.jogo-descricao {
+.game-description {
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -54,7 +54,7 @@
     height: 157px;
 }
 
-.jogo-nome {
+.game-name {
     color: #fff;
     font-weight: 700;
     font-size: 22px;
@@ -64,17 +64,26 @@
     overflow: hidden;
 }
 
-.jogo-plataformas {
+.game-plataforms {
     display: flex;
 }
 
-.jogo-plataforma {
+.game-plataform {
     width: 20px;
     margin-right: 10px;
 }
 
-.pagination{
-    width: 1200px;
-    display: flex;
-    justify-content: space-between;
-}
+.pagination ::ng-deep .ngx-pagination .current {
+    background: #202020;
+
+  }
+
+.pagination ::ng-deep .ngx-pagination a {
+    color: #fff !important;
+
+  }
+
+  .pagination ::ng-deep .ngx-pagination a:hover {
+    background: #202020;
+
+  }
