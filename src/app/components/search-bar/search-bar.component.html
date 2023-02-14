@@ -5,21 +5,17 @@
         <button class="button">Buscar</button>
     </form>
     <div class="login">
-        <div  *ngIf="isLoggedin">
-            <label> VOCE ESTA LOGADO</label>
-        </div>
-        
-            <div  *ngIf="!isLoggedin" >
-                <label>VOCE NÃO ESTA LOGADO</label>
+      
+        <div class="formGroup">
+            <button *ngIf="!authService.loggedIn" type="button" (click)="authService.GoogleAuth()">
+              Log in with Google
+            </button>
+            <div *ngIf="authService.loggedIn">
+              <span (click)="openPerfil()">User is logged IN {{ authService.displayName }}</span>
+              <button type="button" (click)="authService.GoogleOut()">Logout</button>
+            </div>
+            <div *ngIf="!authService.loggedIn" >User is logged OUT</div>
             
-            
-            <asl-google-signin-button type="standard" size="large" (click)="loginWithGoogle()"> </asl-google-signin-button>
-  
-        </div>
-        <div *ngIf="isLoggedin">
-            <label (click)="openPerfil()" >{{ socialUser.name }}</label>
-            <button (click)="logOut()" >Log off</button>
-        </div>
-
+          </div>
     </div>
 </div>

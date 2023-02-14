@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { APIResponse, Game } from 'src/app/models';
-import { GoogleLoginProvider, SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { HttpService } from 'src/app/services/http.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -18,9 +18,9 @@ export class HomeComponent implements OnInit {
   public firstPage: boolean = true;
   public totalPages!: number;
   
- 
 
-  constructor(private httpService: HttpService, private router: Router, private activatedRoute: ActivatedRoute, private socialAuthService: SocialAuthService) {}
+
+  constructor(private httpService: HttpService, private router: Router, private activatedRoute: ActivatedRoute, public authService: AuthService) {}
   ngOnInit(): void {
     
     this.activatedRoute.queryParamMap.subscribe(params => {
@@ -42,13 +42,11 @@ export class HomeComponent implements OnInit {
 
   getGames(sort: string, search?: any):void {
     
-    
      this.activatedRoute.queryParamMap.subscribe(params => {
         if(params.get('page')){
          this.numberPage  = params.get('page');
         }
       });
-
 
     this.httpService
       .getGameList(sort, search, this.numberPage)
@@ -58,8 +56,6 @@ export class HomeComponent implements OnInit {
         this.nextPage = gameList.next;
         this.previousPage = gameList.previous;
         this.totalPages = gameList.count;
-        
-        
         
       });
       
@@ -73,6 +69,17 @@ export class HomeComponent implements OnInit {
       this.router.navigate(['/games'], { queryParams: { page: this.numberPage, ordering: this.sort, search: params.get('search')  } });
   });
   }
- 
+  
+  putZerei(){
+    console.log("ZEREI")
+  }
+
+  putJogando(){
+    console.log("JOGANDO")
+  }
+
+  putJogarei(){
+    console.log("JOGAREI")
+  }
   
 }

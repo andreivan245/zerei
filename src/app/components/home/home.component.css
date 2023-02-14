@@ -1,3 +1,4 @@
+
 .filters {
     max-width: 1200px;
     margin: 20px auto;
@@ -21,7 +22,7 @@
    background-color: #202020;
    box-shadow: 4px 3px 8px 0 rgb(200 152 44 / 22%);
    transition-duration: 0.3s;
-   cursor: pointer; 
+   
 }
 
 .game:hover {
@@ -47,7 +48,7 @@
 }
 
 .game-description {
-    padding: 20px;
+    padding: 15px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -62,7 +63,16 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+    
 }
+
+.game-name:hover {
+    color: #ffffff5a;
+    transition-duration: 0.3s;
+    cursor: pointer;
+}
+
+
 
 .game-plataforms {
     display: flex;
@@ -87,3 +97,13 @@
     background: #202020;
 
   }
+
+  .icons {
+    margin: 10px 10px 0px 10px;
+    display: flex;
+    justify-content: space-around;
+  }
+
+mat-icon:hover {
+    cursor: pointer;
+}

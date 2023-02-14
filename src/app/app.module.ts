@@ -20,6 +20,13 @@ import { DetailsComponent } from './components/details/details.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { PerfilComponent } from './components/perfil/perfil.component';
 
+import { AuthService } from './services/auth.service';
+import { environment } from 'src/environments/environment.prod';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireAuthGuardModule } from '@angular/fire/compat/auth-guard';
+
+
 
 @NgModule({
   declarations: [
@@ -42,7 +49,11 @@ import { PerfilComponent } from './components/perfil/perfil.component';
     MatTabsModule,
     MatIconModule,
     NgxPaginationModule,
-    SocialLoginModule
+    SocialLoginModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
+    AngularFireAuthGuardModule
+    
   ],
   providers: [
     {
@@ -69,6 +80,7 @@ import { PerfilComponent } from './components/perfil/perfil.component';
         ],
       } as SocialAuthServiceConfig,
     },
+    AuthService
 ],
   bootstrap: [AppComponent]
 })

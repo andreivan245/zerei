@@ -1,22 +1,19 @@
-import { SocialUser } from '@abacritt/angularx-social-login';
-import { Component, Input, OnInit } from '@angular/core';
-
+import { Component } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.css']
 })
-export class PerfilComponent implements OnInit {
-  
-  public user!: SocialUser;
+export class PerfilComponent  {
+  public perfilName?: string;
+  public perfilPhoto?: string;
 
-
-  ngOnInit(): void {
-   
-    this.user =  JSON.parse(sessionStorage['perfil']);
-    console.log("teste"+this.user)
-   
+  constructor(public authService: AuthService) {
+    this.perfilName = authService.displayName;
+    this.perfilPhoto = authService.photoUrl;
+    console.log(this.perfilPhoto)
   }
   
 }
