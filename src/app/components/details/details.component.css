@@ -66,3 +66,18 @@
 .game-header-release-date { color: #fff; font-weight: 700;}
 
 .game-header-genres { color: #fff; font-weight: 700;}
+
+.icons{
+    height: 200px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+mat-icon{
+    transform: scale(2);    
+}
+mat-icon:hover {
+    
+    cursor: pointer;
+}

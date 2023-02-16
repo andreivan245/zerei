@@ -13,6 +13,7 @@ export class AuthService {
   loggedIn: boolean = false;
   displayName?: string;
   photoUrl?: string;
+  idUser?: string;
 
   constructor(public afAuth: AngularFireAuth, private router: Router) { 
     
@@ -23,8 +24,8 @@ export class AuthService {
           this.loggedIn = true;
           this.displayName = user.displayName!;
           this.photoUrl = user.photoURL!;
-          console.log(user.photoURL)
-          console.log(user.displayName)
+          this.idUser = user.providerData[0]?.uid;
+         
           
       } else {
           this.loggedIn = false;

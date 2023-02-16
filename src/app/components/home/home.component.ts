@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { APIResponse, Game } from 'src/app/models';
 import { HttpService } from 'src/app/services/http.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { Game as GameDB } from 'src/app/shared/game';
+import { GameService } from 'src/app/shared/game.service';
+import { GameDataService } from 'src/app/shared/game-data.service';
+import { GlobalService } from 'src/app/services/global.service';
 
 @Component({
   selector: 'app-home',
@@ -20,19 +24,23 @@ export class HomeComponent implements OnInit {
   
 
 
-  constructor(private httpService: HttpService, private router: Router, private activatedRoute: ActivatedRoute, public authService: AuthService) {}
+  constructor(private httpService: HttpService,
+              private router: Router, 
+              private activatedRoute: ActivatedRoute, 
+              private authService: AuthService, 
+              private globalService: GlobalService ) {}
+
   ngOnInit(): void {
     
     this.activatedRoute.queryParamMap.subscribe(params => {
         this.getGames(this.sort,params.get('search'));
     });
 
+    this.globalService.ngOnInit();
     
   }
   
-  openGameDetails(id: string): void {
-    this.router.navigate(['details', id]);
-  }
+  
 
   selectionNewSort(){
     this.activatedRoute.queryParamMap.subscribe(params => {
@@ -56,7 +64,7 @@ export class HomeComponent implements OnInit {
         this.nextPage = gameList.next;
         this.previousPage = gameList.previous;
         this.totalPages = gameList.count;
-        
+      
       });
       
   }
@@ -70,16 +78,6 @@ export class HomeComponent implements OnInit {
   });
   }
   
-  putZerei(){
-    console.log("ZEREI")
-  }
-
-  putJogando(){
-    console.log("JOGANDO")
-  }
-
-  putJogarei(){
-    console.log("JOGAREI")
-  }
   
+
 }

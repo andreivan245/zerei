@@ -1,5 +1,95 @@
 <div class="container">
     <img src="{{ perfilPhoto }}" alt="foto de perfil" referrerpolicy="no-referrer"> 
     <h1>{{ perfilName }}</h1>
-    <h2>Jogos Zerados</h2>
+   
+</div>
+<h2>Zerei</h2>
+<div class="games">
+    <ng-container *ngFor="let game of gamesZerei" >
+        <div class="game">
+            <div class="game-thumb-container">
+                <img *ngIf="game.background_image" src="{{ game.background_image }}" alt="thumbnail" 
+                    class="game-thumbnail" />
+
+                    
+                    
+                <p *ngIf="!game.background_image">Sem imagem</p>
+            </div>
+            <div class="game-description">
+                <p class="game-name" (click)="globalService.openGameDetails(game.id)">{{ game.name }} </p>
+                <div class="game-plataforms">
+                    <img *ngFor="let plataformGame of game.parent_platforms" class="game-plataform"
+                        src="assets/images/platforms/{{ plataformGame.platform.slug }}.svg"
+                        alt="{{ plataformGame.platform.slug }}"/>
+                </div>
+                <div *ngIf="authService.loggedIn" class="icons">
+                    <mat-icon class="icon-zerei" (click)="globalService.putZerei(game.id);refresh()">assignment_turned_in</mat-icon>
+                    <mat-icon class="icon-jogando" (click)="globalService.putJogando(game.id);refresh()">assignment_returned</mat-icon>
+                    <mat-icon class="icon-jogarei" (click)="globalService.putJogarei(game.id);refresh()">assignment_late</mat-icon>
+                </div>
+            </div>
+            
+        </div>
+       
+    </ng-container>
+</div>
+<h2>Jogando</h2>
+<div class="games">
+    <ng-container *ngFor="let game of gamesJogando" >
+        <div class="game">
+            <div class="game-thumb-container">
+                <img *ngIf="game.background_image" src="{{ game.background_image }}" alt="thumbnail" 
+                    class="game-thumbnail" />
+
+                    
+                    
+                <p *ngIf="!game.background_image">Sem imagem</p>
+            </div>
+            <div class="game-description">
+                <p class="game-name" (click)="globalService.openGameDetails(game.id)">{{ game.name }} </p>
+                <div class="game-plataforms">
+                    <img *ngFor="let plataformGame of game.parent_platforms" class="game-plataform"
+                        src="assets/images/platforms/{{ plataformGame.platform.slug }}.svg"
+                        alt="{{ plataformGame.platform.slug }}"/>
+                </div>
+                <div *ngIf="authService.loggedIn" class="icons">
+                    <mat-icon class="icon-zerei" (click)="globalService.putZerei(game.id);refresh()">assignment_turned_in</mat-icon>
+                    <mat-icon class="icon-jogando" (click)="globalService.putJogando(game.id);refresh()">assignment_returned</mat-icon>
+                    <mat-icon class="icon-jogarei" (click)="globalService.putJogarei(game.id);refresh()">assignment_late</mat-icon>
+                </div>
+            </div>
+            
+        </div>
+       
+    </ng-container>
+</div>
+<h2>Jogarei</h2>
+<div class="games">
+    <ng-container *ngFor="let game of gamesJogarei" >
+        <div class="game">
+            <div class="game-thumb-container">
+                <img *ngIf="game.background_image" src="{{ game.background_image }}" alt="thumbnail" 
+                    class="game-thumbnail" />
+
+                    
+                    
+                <p *ngIf="!game.background_image">Sem imagem</p>
+            </div>
+            <div class="game-description">
+                <p class="game-name" (click)="globalService.openGameDetails(game.id)">{{ game.name }} </p>
+                <div class="game-plataforms">
+                    <img *ngFor="let plataformGame of game.parent_platforms" class="game-plataform"
+                        src="assets/images/platforms/{{ plataformGame.platform.slug }}.svg"
+                        alt="{{ plataformGame.platform.slug }}"/>
+                </div>
+                <div *ngIf="authService.loggedIn" class="icons">
+                    <mat-icon class="icon-zerei" (click)="globalService.putZerei(game.id);refresh()">assignment_turned_in</mat-icon>
+                    <mat-icon class="icon-jogando" (click)="globalService.putJogando(game.id);refresh()">assignment_returned</mat-icon>
+                    <mat-icon class="icon-jogarei" (click)="globalService.putJogarei(game.id);refresh()">assignment_late</mat-icon>
+                </div>
+            </div>
+            
+        </div>
+       
+    </ng-container>
 </div>

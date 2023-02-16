@@ -38,6 +38,7 @@ export class HttpService {
       
     return forkJoin({ gameInfoRequest, gameScreenshotsRequest, gameTrailerRequest }).pipe(
       map((resp: any) => {
+        
         return {
           ...resp['gameInfoRequest'],
           screenshots: resp['gameScreenshotsRequest']?.results,

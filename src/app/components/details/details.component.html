@@ -25,3 +25,8 @@
         </div>
     </div>
 </div>
+<div *ngIf="authService.loggedIn" class="icons">
+    <mat-icon class="icon-zerei" (click)="globalService.putZerei(game.id)">assignment_turned_in</mat-icon>
+    <mat-icon class="icon-jogando" (click)="globalService.putJogando(game.id)">assignment_returned</mat-icon>
+    <mat-icon class="icon-jogarei" (click)="globalService.putJogarei(game.id)">assignment_late</mat-icon>
+</div>

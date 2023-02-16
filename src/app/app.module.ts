@@ -25,8 +25,7 @@ import { environment } from 'src/environments/environment.prod';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireAuthGuardModule } from '@angular/fire/compat/auth-guard';
-
-
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database'
 
 @NgModule({
   declarations: [
@@ -52,7 +51,8 @@ import { AngularFireAuthGuardModule } from '@angular/fire/compat/auth-guard';
     SocialLoginModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
-    AngularFireAuthGuardModule
+    AngularFireAuthGuardModule,
+    AngularFireDatabaseModule
     
   ],
   providers: [

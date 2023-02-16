@@ -3,6 +3,7 @@ export const environment = {
     firebaseConfig:  {
         apiKey: "AIzaSyC9a7alXpE0BTK7pqeO_oLBKB5vfbNKMjA",
         authDomain: "zerei-fb2d9.firebaseapp.com",
+        databaseURL: 'https://zerei-fb2d9-default-rtdb.firebaseio.com/',
         projectId: "zerei-fb2d9",
         storageBucket: "zerei-fb2d9.appspot.com",
         messagingSenderId: "205369110781",

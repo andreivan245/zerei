@@ -25,24 +25,25 @@
                 <p *ngIf="!game.background_image">Sem imagem</p>
             </div>
             <div class="game-description">
-                <p class="game-name" (click)="openGameDetails(game.id)">{{ game.name }} </p>
+                <p class="game-name" (click)="globalService.openGameDetails(game.id)">{{ game.name }} </p>
                 <div class="game-plataforms">
                     <img *ngFor="let plataformGame of game.parent_platforms" class="game-plataform"
                         src="assets/images/platforms/{{ plataformGame.platform.slug }}.svg"
                         alt="{{ plataformGame.platform.slug }}"/>
                 </div>
                 <div *ngIf="authService.loggedIn" class="icons">
-                    <mat-icon class="icon-zerei" (click)="putZerei()">assignment_turned_in</mat-icon>
-                    <mat-icon class="icon-jogando" (click)="putJogando()">assignment_returned</mat-icon>
-                    <mat-icon class="icon-jogarei" (click)="putJogarei()">assignment_late</mat-icon>
+                    <mat-icon class="icon-zerei" (click)="globalService.putZerei(game.id)">assignment_turned_in</mat-icon>
+                    <mat-icon class="icon-jogando" (click)="globalService.putJogando(game.id)">assignment_returned</mat-icon>
+                    <mat-icon class="icon-jogarei" (click)="globalService.putJogarei(game.id)">assignment_late</mat-icon>
                 </div>
             </div>
             
         </div>
        
     </ng-container>
-  
-        <pagination-controls  (pageChange)="getPage($event)" class="pagination"></pagination-controls>
+    <pagination-controls  (pageChange)="getPage($event)" class="pagination"></pagination-controls>
+</div>
+        
         
         
 
