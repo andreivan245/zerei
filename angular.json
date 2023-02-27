@@ -25,7 +25,7 @@
               "src/assets"
             ],
             "styles": [
-              "@angular/material/prebuilt-themes/purple-green.css",
+              "src/theme.scss",
               "src/styles.css"
             ],
             "scripts": []
@@ -44,15 +44,23 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "optimization": {
+                "scripts": true,
+                 "styles": true,
+                 "fonts": false
+             }
             },
             "development": {
               "buildOptimizer": false,
               "optimization": {
                 "scripts": true,
-                "styles": true,
-                "fonts": false
-              },
+                "styles": {
+                    "minify": true,
+                    "inlineCritical": false
+                },
+                "fonts": true
+            },
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,

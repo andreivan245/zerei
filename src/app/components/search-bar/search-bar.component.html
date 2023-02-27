@@ -1,21 +1,73 @@
-<div class="container">
-    <form class="form" #form="ngForm" (ngSubmit)="onSubmit(form)">
-        <span class="logo" routerLink="/">Zerei</span>
-        <input class="input" name="search" ngModel placeholder="Encontre mais de 500k de jogos" />
-        <button class="button">Buscar</button>
-    </form>
-    <div class="login">
-      
-        <div class="formGroup">
-            <button *ngIf="!authService.loggedIn" type="button" (click)="authService.GoogleAuth()">
-              Log in with Google
-            </button>
-            <div *ngIf="authService.loggedIn">
-              <span (click)="openPerfil()">User is logged IN {{ authService.displayName }}</span>
-              <button type="button" (click)="authService.GoogleOut()">Logout</button>
-            </div>
-            <div *ngIf="!authService.loggedIn" >User is logged OUT</div>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg bg-dark sticky-top">
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+    <!-- Navbar brand -->
+    <a class="navbar-brand" href="#">
+      <img class="logo" src="assets/images/logo.png" alt="">
+    </a>
+    
+
+    <!-- Toggle button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active text-light" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" (click)="openPerfil()">My Games</a>
+        </li>  
+        <li class="nav-item">
+          <a class="nav-link text-light">About the project</a>
+        </li> 
+      </ul>
+      <!-- Left links -->
+
+      <!-- Search form -->
+      <form class="d-flex input-group w-auto me-auto">
+        <input class="form-control" type="search" name="search" [(ngModel)]="search" placeholder="Encontre mais de 500k de jogos" aria-label="Search">
+        <button class="btn btn-primary" type="submit" (click)="onSubmit()">Search</button>
+      </form>
+
+      <ul class="navbar-nav mt-2 mt-sm-0">
+        <li class="nav-item mx-auto">
+          <button *ngIf="!authService.loggedIn" class="btn btn-primary" (click)="authService.GoogleAuth()">Log in with Google</button>
+        </li>
+  
+       
+
+        <li class="nav-item dropdown w-auto" *ngIf="authService.loggedIn">
+          <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-expanded="false">
+            <img src="{{ authService.photoUrl }}" class="rounded-circle img-fluid"
+              height='50' width='50'>
+          </a>
+          
+          <!-- Dropdown menu -->
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start" aria-labelledby="navbarDropdown">
             
-          </div>
+            <li><a class="dropdown-item" (click)="openPerfil()" >My Game List</a></li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
+            <li><a class="dropdown-item" href="#">Your Account</a></li>
+            <li><a class="dropdown-item" href="#">Help</a></li>
+            <li><a class="dropdown-item" (click)="authService.GoogleOut()">Log Out</a></li>
+          </ul>
+        </li>
+        
+      </ul>
+      
     </div>
-</div>
+    <!-- Collapsible wrapper -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->

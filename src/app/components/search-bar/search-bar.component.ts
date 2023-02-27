@@ -12,11 +12,11 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 
 export class SearchBarComponent  {
-
+  public search?: string;
   constructor(private router: Router,public authService: AuthService,public afAuth: AngularFireAuth) {}
   
-  onSubmit(form:NgForm){
-    this.router.navigate(['/games'], { queryParams: { page: '1', ordering: '-metacritic', search: form.value.search  } });
+  onSubmit(){
+    this.router.navigate(['/games'], { queryParams: { page: '1', ordering: '-metacritic', search: this.search  } });
   }
 
   openPerfil(): void {

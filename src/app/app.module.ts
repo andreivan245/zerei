@@ -25,7 +25,9 @@ import { environment } from 'src/environments/environment.prod';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireAuthGuardModule } from '@angular/fire/compat/auth-guard';
-import { AngularFireDatabaseModule } from '@angular/fire/compat/database'
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+
+import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database'
     HomeComponent,
     DetailsComponent,
     PerfilComponent,
+
     
   ],
   imports: [
@@ -52,7 +55,9 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database'
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFireAuthGuardModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    ModalModule,
+
     
   ],
   providers: [
@@ -80,7 +85,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database'
         ],
       } as SocialAuthServiceConfig,
     },
-    AuthService
+    AuthService,
+    BsModalService
 ],
   bootstrap: [AppComponent]
 })

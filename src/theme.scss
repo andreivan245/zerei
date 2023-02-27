@@ -1,0 +1,53 @@
+@import "../node_modules/@angular/material/theming";
+@include mat-core();
+
+/* For use in src/lib/core/theming/_palette.scss */
+$md-mcgpaletteturquoise: (
+    50 : #e4fcf6,
+    100 : #bbf8e9,
+    200 : #8ef4db,
+    300 : #61f0cd,
+    400 : #3fecc2,
+    500 : #1de9b7,
+    600 : #1ae6b0,
+    700 : #15e3a7,
+    800 : #11df9f,
+    900 : #0ad990,
+    A100 : #ffffff,
+    A200 : #d0ffed,
+    A400 : #9dffd9,
+    A700 : #84ffcf,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+
+
+$my-primary: mat-palette($md-mcgpaletteturquoise, 900);
+$my-accent: mat-palette($md-mcgpaletteturquoise, 900);
+
+$my-theme: mat-light-theme($my-primary, $my-accent);
+
+@include angular-material-theme($my-theme);
+
+
+.alternative {
+  $my-primary: mat-palette($mat-amber, 800);
+  $my-accent: mat-palette($mat-light-green, 800);
+  $my-theme: mat-light-theme($my-primary, $my-accent);
+  @include angular-material-theme($my-theme);
+}

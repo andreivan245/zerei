@@ -1,6 +1,7 @@
 <div class="filters">
+   
     <mat-form-field>
-        <mat-label>Classificar</mat-label>
+        <mat-label >Classificar</mat-label>
         <mat-select panelClass="selecionado-classificar" [(ngModel)]="sort" (selectionChange)="getGames(sort); selectionNewSort()"   >
             <mat-option value="name">Nome</mat-option>
             <mat-option value="-released">Lançado</mat-option>
@@ -13,38 +14,52 @@
     </mat-form-field>
 </div>
 
-<div class="games">
-    <ng-container *ngFor="let game of games | paginate: { itemsPerPage: 20, currentPage: numberPage, totalItems: totalPages }" >
-        <div class="game">
-            <div class="game-thumb-container">
-                <img *ngIf="game.background_image" src="{{ game.background_image }}" alt="thumbnail" 
-                    class="game-thumbnail" />
-
-                    
-                    
-                <p *ngIf="!game.background_image">Sem imagem</p>
-            </div>
-            <div class="game-description">
-                <p class="game-name" (click)="globalService.openGameDetails(game.id)">{{ game.name }} </p>
-                <div class="game-plataforms">
-                    <img *ngFor="let plataformGame of game.parent_platforms" class="game-plataform"
-                        src="assets/images/platforms/{{ plataformGame.platform.slug }}.svg"
-                        alt="{{ plataformGame.platform.slug }}"/>
+<div class="container-fluid d-flex flex-wrap justify-content-center" >     
+    <div class="card bg-dark text-white" *ngFor="let game of games | paginate: { itemsPerPage: 20, currentPage: numberPage, totalItems: totalPages }">
+                <img class="card-img-top" src="{{ game.background_image }}" alt="Card image cap">
+                <div class="card-body d-flex flex-column align-items-center">
+                    <div class="game-plataforms mb-3">
+                        <img *ngFor="let plataformGame of game.parent_platforms" class="game-plataform"
+                            src="assets/images/platforms/{{ plataformGame.platform.slug }}.svg"
+                            alt="{{ plataformGame.platform.slug }}"/>
+                        </div>
+                  <h5 class="card-title" (click)="globalService.openGameDetails(game.id)"> {{ game.name }} </h5>
+                  
+                    <div *ngIf="authService.loggedIn" class="card-footer mt-auto">
+                        
+                        <i class="bi bi-award"  (click)="globalService.putZerei(game.id); openModal(template, game.id)"></i>
+                        <i class="bi bi-controller" (click)="globalService.putJogando(game.id); openModal(template, game.id)"></i>
+                        <i class="bi bi-bookmark-star" (click)="globalService.putJogarei(game.id); openModal(template, game.id)"></i>
+                        
+                    </div>
                 </div>
-                <div *ngIf="authService.loggedIn" class="icons">
-                    <mat-icon class="icon-zerei" (click)="globalService.putZerei(game.id)">assignment_turned_in</mat-icon>
-                    <mat-icon class="icon-jogando" (click)="globalService.putJogando(game.id)">assignment_returned</mat-icon>
-                    <mat-icon class="icon-jogarei" (click)="globalService.putJogarei(game.id)">assignment_late</mat-icon>
-                </div>
-            </div>
-            
-        </div>
-       
-    </ng-container>
+              </div>           
     <pagination-controls  (pageChange)="getPage($event)" class="pagination"></pagination-controls>
-</div>
+
+</div>   
+
+
         
+<ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Jogo adicionado com sucesso
+        <i class="bi bi-check2-circle" style="color: #1DE9B7;"></i>
+      </h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      O jogo  {{nameGameAdd}} foi adicionado a sua lista de jogos no qual você  {{ listagem }}!
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="modalRef?.hide()">Ok</button>
+    </div>
+</ng-template>
+
+
         
-        
+
+
 
 

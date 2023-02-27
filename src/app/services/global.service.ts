@@ -12,6 +12,7 @@ export class GlobalService implements OnInit{
   game!: GameDB;
   key!: string;
   action?: string;
+  listagem?: string;
 
   constructor(private router: Router,private authService: AuthService, 
     private gameService: GameService,private activatedRoute: ActivatedRoute, private gameDataService: GameDataService, ) { }
@@ -39,7 +40,7 @@ export class GlobalService implements OnInit{
   putZerei(gameId: string){
    
   
-    
+    this.listagem = "Zerou";
     this.game.idUser = this.authService.idUser!;
     this.game.idGame = gameId;
     this.game.action = 'zerei'
@@ -56,7 +57,8 @@ export class GlobalService implements OnInit{
   }
 
   putJogando(gameId: string){
-    
+
+    this.listagem = "está jogando";
     this.game.idUser = this.authService.idUser!;
     this.game.idGame = gameId;
     this.game.action = 'jogando'
@@ -73,6 +75,7 @@ export class GlobalService implements OnInit{
 
   putJogarei(gameId: string){
 
+    this.listagem = "ainda vai jogar";
     this.game.idUser = this.authService.idUser!;
     this.game.idGame = gameId;
     this.game.action = 'jogarei'
