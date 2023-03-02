@@ -7,13 +7,14 @@ import { Game as GameDB } from 'src/app/shared/game';
 import { GameService } from 'src/app/shared/game.service';
 import { GameDataService } from 'src/app/shared/game-data.service';
 import { GlobalService } from 'src/app/services/global.service';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
 export class HomeComponent implements OnInit {
   public sort: string= '-added';
   public games: Array<Game> = [];
@@ -22,16 +23,13 @@ export class HomeComponent implements OnInit {
   public numberPage:  any = 1;
   public firstPage: boolean = true;
   public totalPages!: number;
-  modalRef?: BsModalRef;
-  listagem?: string;
-  nameGameAdd!: string;
+  
 
   constructor(private httpService: HttpService,
               private router: Router, 
               private activatedRoute: ActivatedRoute, 
               private authService: AuthService, 
-              private globalService: GlobalService,
-              private modalService: BsModalService ) {}
+              private globalService: GlobalService ) {}
 
   ngOnInit(): void {
     
@@ -81,19 +79,6 @@ export class HomeComponent implements OnInit {
   });
   }
   
-  openModal(template: TemplateRef<any>, id: string) {
-    this.modalRef = this.modalService.show(template);
-    this.listagem = this.globalService.listagem;
-   
-    this.httpService
-      .getGameDetails(id)
-      .subscribe((gameResp: Game) => {
-        console.log(gameResp)
-        this.nameGameAdd = gameResp.name;
-        
-      });
-      
-    
-  }
+  
   
 }

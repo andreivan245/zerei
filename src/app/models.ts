@@ -12,7 +12,8 @@ export interface Game {
     ratings: Array<Rating>;
     screenshots: Array<Screenshots>;
     trailers: Array<Trailer>;
-
+    platforms: Array<Platform>;
+    developers: Array<Developers>;
 }
 
 export interface APIResponse<T> { results: Array<T>, next: string, previous: string, count: number }
@@ -20,6 +21,10 @@ export interface APIResponse<T> { results: Array<T>, next: string, previous: str
 interface Genre { name: string }
 
 interface ParentPlatform { platform: { name: string } }
+
+interface Developers { name: string }
+
+interface Platform { platform: { name: string } }
 
 interface Publishers { name: string}
 

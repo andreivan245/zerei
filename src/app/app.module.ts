@@ -28,6 +28,9 @@ import { AngularFireAuthGuardModule } from '@angular/fire/compat/auth-guard';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 
 import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+
+
 
 @NgModule({
   declarations: [
@@ -36,7 +39,6 @@ import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
     HomeComponent,
     DetailsComponent,
     PerfilComponent,
-
     
   ],
   imports: [
@@ -57,6 +59,7 @@ import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
     AngularFireAuthGuardModule,
     AngularFireDatabaseModule,
     ModalModule,
+    CarouselModule
 
     
   ],

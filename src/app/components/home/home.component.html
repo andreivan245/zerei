@@ -27,9 +27,9 @@
                   
                     <div *ngIf="authService.loggedIn" class="card-footer mt-auto">
                         
-                        <i class="bi bi-award"  (click)="globalService.putZerei(game.id); openModal(template, game.id)"></i>
-                        <i class="bi bi-controller" (click)="globalService.putJogando(game.id); openModal(template, game.id)"></i>
-                        <i class="bi bi-bookmark-star" (click)="globalService.putJogarei(game.id); openModal(template, game.id)"></i>
+                        <i class="bi bi-award"  (click)="globalService.putZerei(game.id); globalService.openModal(template, game.id)"></i>
+                        <i class="bi bi-controller" (click)="globalService.putJogando(game.id); globalService.openModal(template, game.id);"></i>
+                        <i class="bi bi-bookmark-star" (click)="globalService.putJogarei(game.id); globalService.openModal(template, game.id)"></i>
                         
                     </div>
                 </div>
@@ -45,17 +45,20 @@
       <h4 class="modal-title pull-left">Jogo adicionado com sucesso
         <i class="bi bi-check2-circle" style="color: #1DE9B7;"></i>
       </h4>
-      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="globalService.modalRef?.hide()">
         <span aria-hidden="true" class="visually-hidden">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-      O jogo  {{nameGameAdd}} foi adicionado a sua lista de jogos no qual você  {{ listagem }}!
+      O jogo  {{globalService.nameGameAdd}} foi adicionado a sua lista de jogos no qual você  {{ globalService.listagem }}!
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="modalRef?.hide()">Ok</button>
+        <button type="button" class="btn btn-primary" (click)="globalService.modalRef?.hide()">Ok</button>
     </div>
 </ng-template>
+
+
+
 
 
         

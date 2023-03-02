@@ -4,6 +4,7 @@ import { Game } from 'src/app/models';
 import { HttpService } from 'src/app/services/http.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { GlobalService } from 'src/app/services/global.service';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 @Component({
   selector: 'app-details',
@@ -28,6 +29,7 @@ export class DetailsComponent implements OnInit {
       .subscribe((gameResp: Game) => {
         console.log(gameResp)
         this.game = gameResp;
+        
         this.gameRating = this.game.metacritic;
       });
   }

@@ -1,32 +1,68 @@
-<div class="details" *ngIf="game" >
+<div class="container-fluid details" *ngIf="game" >
     <div class="game-banner">
         <img class="game-banner-img" src="{{ game.background_image }}" alt="background image" />
+        
     </div>
-    <div class="game-content">
-        <div class="details-wrapper">
-            <div class="game-header">
+    <div class="game-description mt-3">
+        <div class="game-content">
+            <div class="icons d-flex  justify-content-around bg-dark rounded-pill ">
+                <i class="bi bi-award"  (click)="globalService.putZerei(game.id); globalService.openModal(template, game.id)"></i>
+                <i class="bi bi-controller" (click)="globalService.putJogando(game.id); globalService.openModal(template, game.id)"></i>
+                <i class="bi bi-bookmark-star" (click)="globalService.putJogarei(game.id); globalService.openModal(template, game.id)"></i>
+            </div>
+            <div class="game-header mt-3">
                 <h1 class="game-header-title">{{ game.name }}</h1>
                 <h2 class="game-header-release-date">
                     Release: {{ game.released | date }}
                 </h2>
+                <div class="game-metacritc">
+                    <span class="metascore rounded-1 bg-success" *ngIf="game.metacritic >= 75">
+                        {{ game.metacritic }}
+                    </span>
+                    <span class="metascore rounded-1 bg-warning" *ngIf="game.metacritic >= 45 && game.metacritic < 75">
+                        {{ game.metacritic }}
+                    </span>
+                    <span class="metascore rounded-1 bg-danger" *ngIf="game.metacritic > 0 && game.metacritic < 45" >
+                        {{ game.metacritic }}
+                    </span>
+                </div>
                 <p class="game-header-genres">
                     <span *ngFor="let genre of game.genres; let last = last">{{ genre.name }}<span *ngIf="!last">,
                         </span>
                     </span>
                 </p>
-                <div class="game-gauge">
-                    <mwl-gauge class="two" [max]="100" [dialStartAngle]="180" [dialEndAngle]="0" [value]="gameRating"
-                        [animated]="true" [color]="getColor" [animationDuration]="2">
-                    </mwl-gauge>
-                    <a class="game-gauge-label" target="_blank" href="{{ game.metacritic_url }}">Metacritic</a>
-                </div>
+                
             </div>
-           
+           <div class="game-about mt-3">
+            <h2>About</h2>
+                <p>{{ game.description_raw }}</p>
+                <h3 class="mt-4">Platforms</h3>
+                <p *ngFor="let gamePlatform of game.platforms">{{ gamePlatform.platform.name }}</p>
+                <h3 class="mt-4">Developers</h3>
+                <p *ngFor="let gameDev of game.developers">{{ gameDev.name }}</p>
+                <h3 class="mt-4">Publishers</h3>
+                <p *ngFor="let gamePublishers of game.publishers">{{ gamePublishers.name }}</p>
+                <h3 class="mt-4">Screenshots</h3>
+                <carousel>
+                    <slide *ngFor="let gameScreenshot of game.screenshots"><img src="{{ gameScreenshot.image }}" alt="" style="display: block; width: 100%;"></slide>
+                </carousel>
         </div>
     </div>
 </div>
-<div *ngIf="authService.loggedIn" class="icons">
-    <mat-icon class="icon-zerei" (click)="globalService.putZerei(game.id)">assignment_turned_in</mat-icon>
-    <mat-icon class="icon-jogando" (click)="globalService.putJogando(game.id)">assignment_returned</mat-icon>
-    <mat-icon class="icon-jogarei" (click)="globalService.putJogarei(game.id)">assignment_late</mat-icon>
-</div>
+
+<ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Jogo adicionado com sucesso
+        <i class="bi bi-check2-circle" style="color: #1DE9B7;"></i>
+      </h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="globalService.modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      O jogo  {{globalService.nameGameAdd}} foi adicionado a sua lista de jogos no qual você  {{ globalService.listagem }}!
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="globalService.modalRef?.hide()">Ok</button>
+    </div>
+</ng-template>
