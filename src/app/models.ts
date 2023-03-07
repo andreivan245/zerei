@@ -14,7 +14,10 @@ export interface Game {
     trailers: Array<Trailer>;
     platforms: Array<Platform>;
     developers: Array<Developers>;
+    achievements: Array<Achievements>;
+    stores_url: Array<Stores>;
 }
+
 
 export interface APIResponse<T> { results: Array<T>, next: string, previous: string, count: number }
 
@@ -33,3 +36,7 @@ interface Rating { id:number; count: number; title: string }
 interface Screenshots { image: string}
 
 interface Trailer { data: { max: string } }
+
+interface Achievements { id:number; name:string; description:string; image:string;}
+
+interface Stores { id:number; game_id:number; store_id:number; url:string;}

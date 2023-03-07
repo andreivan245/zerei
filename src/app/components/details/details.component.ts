@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Game } from 'src/app/models';
 import { HttpService } from 'src/app/services/http.service';
@@ -27,17 +27,15 @@ export class DetailsComponent implements OnInit {
     this.httpService
       .getGameDetails(id)
       .subscribe((gameResp: Game) => {
-        console.log(gameResp)
-        this.game = gameResp;
-        
+
+        console.log(gameResp);     
+        this.game = gameResp;       
         this.gameRating = this.game.metacritic;
+        
       });
   }
-  getColor(value: number): string {
-    if (value > 75) return '#5ee432';
-    else if (value > 50) return '#fffa50';
-    else if (value > 30) return '#f7aa38';
-    else return '#ef4655';
-  }
+
+
+  
 }
 
