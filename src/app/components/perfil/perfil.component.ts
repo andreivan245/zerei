@@ -42,5 +42,6 @@ export class PerfilComponent implements OnInit  {
   refresh(): void {
     window.location.reload();
 }
-  
+
+
 }

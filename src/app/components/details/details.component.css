@@ -7,7 +7,7 @@
     height: 4rem;
 }
 .background-image{
-    height: 42rem;
+    height: 27rem;
     object-fit: cover;
     object-position: 50% 0;
 }
@@ -52,6 +52,7 @@
     text-align: center;
     justify-content: center;
     align-items: center;
+    border: #252525 1px solid;
 }
 
 .achievements-items {
