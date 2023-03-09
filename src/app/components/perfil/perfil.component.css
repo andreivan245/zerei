@@ -52,4 +52,25 @@
     background-color: #1DE9B7;
 }
 
+.bi-trash-fill{
+    text-shadow: -0.8px 0 #252525, 0 0.8px #252525, 0.8px 0 #252525, 0 -0.8px #252525;
+    left: 15.3rem;
+    font-size: 20px;
+    position: absolute;
+    margin: 0.55rem 0;
+    padding: 0;
+}
 
+.bi-trash-fill:hover{
+    text-shadow: none;
+    color: red;
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
+
+.btn-primary {
+    color: #212529;
+    border-color: #1DE9B7;
+    background-color: #1DE9B7;
+    
+}

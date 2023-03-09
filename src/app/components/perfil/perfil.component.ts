@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { GameService } from 'src/app/shared/game.service';
 import { Game } from 'src/app/models';
@@ -9,7 +9,7 @@ import { GlobalService } from 'src/app/services/global.service';
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.css']
 })
-export class PerfilComponent implements OnInit  {
+export class PerfilComponent implements OnInit,OnChanges  {
 
   public perfilName?: string;
   public perfilPhoto?: string;
@@ -18,6 +18,8 @@ export class PerfilComponent implements OnInit  {
   public gamesZerei: Array<Game> = [];
   public gamesJogando: Array<Game> = [];
   public gamesJogarei: Array<Game> = [];
+
+  public editing: boolean = false;
 
   constructor(public authService: AuthService, public gameService: GameService, private globalService: GlobalService) {
     this.perfilName = authService.displayName;
@@ -38,10 +40,24 @@ export class PerfilComponent implements OnInit  {
   ngOnInit(): void {
     this.globalService.ngOnInit();
   }
+
+  ngOnChanges() {
+    console.log('ngOnChanges')
+  }
   
   refresh(): void {
     window.location.reload();
-}
+  }
 
+  editGameList(): void{
+    this.editing = !this.editing;
+  }
+
+  deleteGame(id: string, index: number, gamesList: Array<Game>){
+    let key = this.authService.idUser + id;
+    this.gameService.delete(key)
+    this.gameService.getGame(this.idUser!)
+    gamesList.splice(index,1)
+  }
 
 }

@@ -1,7 +1,12 @@
 <div class="container-fluid">
     <div class="perfil-section d-flex align-items-center justify-content-center mt-4">
-        <img src="{{ perfilPhoto }}" alt="foto de perfil" referrerpolicy="no-referrer" class="rounded-circle me-2"> 
-        <h1>{{ perfilName }}</h1>
+        <img src="{{ perfilPhoto }}" alt="foto de perfil" referrerpolicy="no-referrer" class="rounded-circle me-2">
+        <div class="d-flex flex-column">
+            <h1>{{ perfilName }}</h1>
+            <button class="btn btn-primary" *ngIf="!editing" (click)="editGameList()">Edit Game List</button>
+            <button class="btn btn-primary" *ngIf="editing" (click)="editGameList()">Save</button>
+        </div>
+        
     </div>
 
     <div class="perfil-informations d-flex mt-5 mb-1 align-items-center justify-content-around border-bottom">
@@ -22,7 +27,8 @@
 
 <h2 class="mt-5 text-center">Zerei</h2>
 <div class="d-flex flex-wrap justify-content-center border-bottom" id="zerei">
-    <div class="card bg-dark text-white" *ngFor="let game of gamesZerei; let i = index">
+    <div class="card bg-dark text-white" *ngFor="let game of gamesZerei; let i = index" ng>
+        <i class="bi bi-trash-fill" *ngIf="editing" (click)="deleteGame(game.id, i, gamesZerei)"></i>
         <img class="card-img-top" src="{{ game.background_image }}" alt="Card image cap">
         <div class="card-body d-flex flex-column align-items-center">
             <div class="game-plataforms mb-3">
@@ -45,9 +51,11 @@
 <h2 class="mt-5 text-center">Jogando</h2>
 <div class="d-flex flex-wrap justify-content-center border-bottom" id="Jogando">
     <div class="card bg-dark text-white" *ngFor="let game of gamesJogando">
+        <i class="bi bi-trash-fill" *ngIf="editing" (click)="deleteGame(game.id, i, gamesJogando)" ></i>
         <img class="card-img-top" src="{{ game.background_image }}" alt="Card image cap">
         <div class="card-body d-flex flex-column align-items-center">
             <div class="game-plataforms mb-3">
+                
                 <img *ngFor="let plataformGame of game.parent_platforms" class="game-plataform"
                 src="assets/images/platforms/{{ plataformGame.platform.slug }}.svg"
                 alt="{{ plataformGame.platform.slug }}"/>
@@ -67,7 +75,14 @@
 <h2 class="mt-5 text-center">Jogarei</h2>
 <div class="d-flex flex-wrap justify-content-center" id="Jogarei">
     <div class="card bg-dark text-white" *ngFor="let game of gamesJogarei">
+        
+
+      
+         <i class="bi bi-trash-fill" *ngIf="editing" (click)="deleteGame(game.id, i, gamesJogarei)"></i>
+               
+       
         <img class="card-img-top" src="{{ game.background_image }}" alt="Card image cap">
+       
         <div class="card-body d-flex flex-column align-items-center">
             <div class="game-plataforms mb-3">
                 <img *ngFor="let plataformGame of game.parent_platforms" class="game-plataform"
