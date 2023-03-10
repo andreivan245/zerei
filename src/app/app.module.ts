@@ -1,36 +1,37 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
+import {
+  GoogleLoginProvider,
+  SocialAuthServiceConfig,
+  SocialLoginModule,
+} from '@abacritt/angularx-social-login';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { GaugeModule } from 'angular-gauge';
-import { MatTabsModule } from '@angular/material/tabs'
-import { MatIconModule } from '@angular/material/icon'
-import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
-import { HomeComponent } from './components/home/home.component'
-import { HttpHeadersInterceptor } from './interceptors/http-headers.interceptor'; 
+import { HomeComponent } from './components/home/home.component';
+import { HttpHeadersInterceptor } from './interceptors/http-headers.interceptor';
 import { HttpErrorsInterceptor } from './interceptors/http-errors.interceptor';
 import { DetailsComponent } from './components/details/details.component';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { PerfilComponent } from './components/perfil/perfil.component';
-
 import { AuthService } from './services/auth.service';
 import { environment } from 'src/environments/environment.prod';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireAuthGuardModule } from '@angular/fire/compat/auth-guard';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
-
 import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
-
-
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,6 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     HomeComponent,
     DetailsComponent,
     PerfilComponent,
-    
   ],
   imports: [
     BrowserModule,
@@ -59,9 +59,8 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     AngularFireAuthGuardModule,
     AngularFireDatabaseModule,
     ModalModule,
-    CarouselModule
-
-    
+    CarouselModule,
+    PaginationModule,
   ],
   providers: [
     {
@@ -76,7 +75,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     },
     {
       provide: 'SocialAuthServiceConfig',
-      useValue:{
+      useValue: {
         autoLogin: false,
         providers: [
           {
@@ -89,8 +88,8 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
       } as SocialAuthServiceConfig,
     },
     AuthService,
-    BsModalService
-],
-  bootstrap: [AppComponent]
+    BsModalService,
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,110 +1,168 @@
-<div class="container-fluid details" *ngIf="game" >
-    <div class="card  mt-2">
-            <img src="{{game.background_image}}" class="card-img background-image" alt="background image game">
-                <div class=" card-img-overlay bg-dark d-flex justify-content-around icons  top-100 start-50 translate-middle rounded-pill">
-                    <i class="bi bi-award mt-1"  (click)="globalService.putZerei(game.id); globalService.openModal(template, game.id)"></i>
-                    <i class="bi bi-controller mt-1" (click)="globalService.putJogando(game.id); globalService.openModal(template, game.id)"></i>
-                    <i class="bi bi-bookmark-star mt-1" (click)="globalService.putJogarei(game.id); globalService.openModal(template, game.id)"></i>
-                </div>
-            
-        </div>
-        <div class="game-description mt-3">
-            <div class="game-content">
-                
-                <div class="game-header mt-3 d-flex align-items-center">
-                    <h1 class="game-header-title me-2">{{ game.name }}</h1>
-                    <span class="game-metacritc">
-                        <span class="metascore rounded-1 bg-success" *ngIf="game.metacritic >= 75">
-                            {{ game.metacritic }}
-                        </span>
-                        <span class="metascore rounded-1 bg-warning" *ngIf="game.metacritic >= 45 && game.metacritic < 75">
-                            {{ game.metacritic }}
-                        </span>
-                        <span class="metascore rounded-1 bg-danger" *ngIf="game.metacritic > 0 && game.metacritic < 45" >
-                            {{ game.metacritic }}
-                        </span>
-                    </span>
-                    
-                    
-                </div>
-
-                <h2 class="game-header-release-date">
-                    Release: {{ game.released | date }}
-                </h2>
-                
-                <p class="game-header-genres">
-                    <span *ngFor="let genre of game.genres; let last = last">{{ genre.name }}<span *ngIf="!last">,
-                        </span>
-                    </span>
-                </p>
-
-               <div class="game-about mt-3">
-               
-                <h2>About</h2>
-                <p>{{ game.description_raw }}</p>
-
-                    <div class="game-informations d-flex justify-content-between flex-wrap">
-
-                        <div class="game-information-platform mx-1">
-                            <h3 class="mt-4">Platforms</h3>
-                            <p *ngFor="let gamePlatform of game.platforms">{{ gamePlatform.platform.name }}</p>
-                        </div>
-                        
-                        <div class="game-information-developers mx-1">
-                            <h3 class="mt-4">Developers</h3>
-                            <p *ngFor="let gameDev of game.developers">{{ gameDev.name }}</p>
-                        </div>
-                    
-                        <div class="game-information-publishers mx-1">
-                            <h3 class="mt-4">Publishers</h3>
-                            <p *ngFor="let gamePublishers of game.publishers">{{ gamePublishers.name }}</p>
-                        </div>
-
-                        <div class="game-information-stores d-flex flex-column mx-1">
-                            <h3 class="mt-4">Stores</h3>
-                            <button type="button" class="btn btn-dark my-1" *ngFor="let gameStore of game.stores; let i = index;"><a href="{{game.stores_url[i].url}}" target="_blank" rel="noopener noreferrer" class="store-link">{{gameStore.store.name}}</a></button>
-                        </div>
-                        
-                    </div>
-                    
-                    
-                    <h3 class="my-4 text-center">Screenshots</h3>
-                    <carousel>
-                        <slide *ngFor="let gameScreenshot of game.screenshots"><img src="{{ gameScreenshot.image }}" alt="" style="display: block; width: 100%;"></slide>
-                    </carousel>
-
-                    <h3 class="mt-4 mb-2 text-center" *ngIf="game.achievements > 0">Achievements</h3>
-                    <div class="achievements d-flex flex-wrap justify-content-around mb-2">
-                        
-                        <div *ngFor="let gameAchievements of game.achievements" class="card achievements-items mt-2">
-                            <img src="{{ gameAchievements.image }}" alt="Achievement image" class="card-img-top">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ gameAchievements.name }} </h5>
-                                <p>{{ gameAchievements.description }}</p>
-                            </div>  
-                            
-                        </div>
-                    </div>
-                    
-               
-            </div>
-        </div>
+<div class="container-fluid details px-3 px-sm-0" *ngIf="game">
+  <div class="card mt-2">
+    <img
+      src="{{ game.background_image }}"
+      class="card-img background-image"
+      alt="background image game" />
+    <div
+      class="card-img-overlay bg-dark d-flex justify-content-around icons top-100 start-50 translate-middle rounded-pill"
+      *ngIf="authService.loggedIn">
+      <i
+        class="bi bi-award mt-1"
+        (click)="
+          globalService.putZerei(game.id);
+          globalService.openModal(template, game.id)
+        "></i>
+      <i
+        class="bi bi-controller mt-1"
+        (click)="
+          globalService.putJogando(game.id);
+          globalService.openModal(template, game.id)
+        "></i>
+      <i
+        class="bi bi-bookmark-star mt-1"
+        (click)="
+          globalService.putJogarei(game.id);
+          globalService.openModal(template, game.id)
+        "></i>
     </div>
+  </div>
+  <div class="game-description mt-3">
+    <div class="game-content">
+      <div class="game-header mt-3 d-flex align-items-center">
+        <h1 class="game-header-title me-2" translate="no">{{ game.name }}</h1>
+        <span class="game-metacritc">
+          <span
+            class="metascore rounded-1 bg-success"
+            *ngIf="game.metacritic >= 75">
+            {{ game.metacritic }}
+          </span>
+          <span
+            class="metascore rounded-1 bg-warning"
+            *ngIf="game.metacritic >= 45 && game.metacritic < 75">
+            {{ game.metacritic }}
+          </span>
+          <span
+            class="metascore rounded-1 bg-danger"
+            *ngIf="game.metacritic > 0 && game.metacritic < 45">
+            {{ game.metacritic }}
+          </span>
+        </span>
+      </div>
+
+      <h2 class="game-header-release-date">
+        Lançamento: {{ game.released | date }}
+      </h2>
+
+      <p class="game-header-genres">
+        <span *ngFor="let genre of game.genres; let last = last"
+          >{{ genre.name }}<span *ngIf="!last">, </span>
+        </span>
+      </p>
+
+      <div class="game-about mt-3">
+        <h2>Sobre</h2>
+        <p>{{ game.description_raw }}</p>
+
+        <div
+          class="game-informations d-flex justify-content-between flex-wrap row">
+          <div class="game-information-platform mx-1 col">
+            <h3 class="mt-4">Plataformas</h3>
+            <p *ngFor="let gamePlatform of game.platforms" translate="no">
+              {{ gamePlatform.platform.name }}
+            </p>
+          </div>
+
+          <div class="game-information-developers mx-1 col">
+            <h3 class="mt-4">Desenvolvedores</h3>
+            <p *ngFor="let gameDev of game.developers" translate="no">
+              {{ gameDev.name }}
+            </p>
+          </div>
+
+          <div class="game-information-publishers mx-1 col">
+            <h3 class="mt-4">Editores</h3>
+            <p *ngFor="let gamePublishers of game.publishers" translate="no">
+              {{ gamePublishers.name }}
+            </p>
+          </div>
+
+          <div class="game-information-stores d-flex flex-column mx-1 col">
+            <h3 class="mt-4">Lojas</h3>
+            <button
+              type="button"
+              class="btn btn-dark my-1"
+              *ngFor="let gameStore of game.stores; let i = index">
+              <a
+                href="{{ game.stores_url[i].url }}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="store-link"
+                translate="no"
+                >{{ gameStore.store.name }}</a
+              >
+            </button>
+          </div>
+        </div>
+
+        <h3 class="my-4 text-center" translate="no">Screenshots</h3>
+        <carousel>
+          <slide *ngFor="let gameScreenshot of game.screenshots"
+            ><img
+              src="{{ gameScreenshot.image }}"
+              alt=""
+              style="display: block; width: 100%"
+          /></slide>
+        </carousel>
+
+        <h3 class="mt-4 mb-2 text-center" *ngIf="game.achievements.length > 0">
+          Conquistas
+        </h3>
+        <div class="achievements d-flex flex-wrap justify-content-around mb-2">
+          <div
+            *ngFor="let gameAchievements of game.achievements"
+            class="card achievements-items mt-2">
+            <img
+              src="{{ gameAchievements.image }}"
+              alt="Achievement image"
+              class="card-img-top" />
+            <div class="card-body">
+              <h5 class="card-title">{{ gameAchievements.name }}</h5>
+              <p class="game-achievement-description">
+                {{ gameAchievements.description }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <ng-template #template>
-    <div class="modal-header">
-      <h4 class="modal-title pull-left">Jogo adicionado com sucesso
-        <i class="bi bi-check2-circle" style="color: #1DE9B7;"></i>
-      </h4>
-      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="globalService.modalRef?.hide()">
-        <span aria-hidden="true" class="visually-hidden">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      O jogo  {{globalService.nameGameAdd}} foi adicionado a sua lista de jogos no qual você  {{ globalService.listagem }}!
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="globalService.modalRef?.hide()">Ok</button>
-    </div>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">
+      Jogo adicionado com sucesso
+      <i class="bi bi-check2-circle" style="color: #1de9b7"></i>
+    </h4>
+    <button
+      type="button"
+      class="btn-close close pull-right"
+      aria-label="Close"
+      (click)="globalService.modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    O jogo {{ globalService.nameGameAdd }} foi adicionado a sua lista de jogos
+    no qual você {{ globalService.listagem }}!
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="globalService.modalRef?.hide()">
+      Ok
+    </button>
+  </div>
 </ng-template>

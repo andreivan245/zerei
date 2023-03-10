@@ -47,19 +47,16 @@
     margin-right: 10px;
 }
 
-.pagination ::ng-deep .ngx-pagination .current {
-    background: #202020;
 
+.pagination ::ng-deep .page-item.active .page-link {
+    background: #202020;
+    border: #202020;
+    color: #fff;
   }
 
-.pagination ::ng-deep .ngx-pagination a {
-    color: #202020 !important;
-
-  }
-
-.pagination ::ng-deep .ngx-pagination a:hover {
-    background: #202020;
-    color: #fff !important;
+  .pagination ::ng-deep .page-item .page-link {
+   
+   color: #202020;
   }
 
 

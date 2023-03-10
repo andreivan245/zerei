@@ -1,6 +1,6 @@
 export class Game {
-    idUser!: string;
-    idGame!: string;
-    action!: string;
-    key!: string;
+  idUser!: string;
+  idGame!: string;
+  action!: string;
+  key!: string;
 }

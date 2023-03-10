@@ -47,20 +47,20 @@
               "outputHashing": "all",
               "optimization": {
                 "scripts": true,
-                 "styles": true,
-                 "fonts": false
-             }
+                "styles": true,
+                "fonts": false
+              }
             },
             "development": {
               "buildOptimizer": false,
               "optimization": {
                 "scripts": true,
                 "styles": {
-                    "minify": true,
-                    "inlineCritical": false
+                  "minify": true,
+                  "inlineCritical": false
                 },
                 "fonts": true
-            },
+              },
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
@@ -114,8 +114,22 @@
         },
         "deploy": {
           "builder": "angular-cli-ghpages:deploy"
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
+  },
+  "cli": {
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }

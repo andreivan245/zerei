@@ -1,120 +1,231 @@
 <div class="container-fluid">
-    <div class="perfil-section d-flex align-items-center justify-content-center mt-4">
-        <img src="{{ perfilPhoto }}" alt="foto de perfil" referrerpolicy="no-referrer" class="rounded-circle me-2">
-        <div class="d-flex flex-column">
-            <h1>{{ perfilName }}</h1>
-            <button class="btn btn-primary" *ngIf="!editing" (click)="editGameList()">Edit Game List</button>
-            <button class="btn btn-primary" *ngIf="editing" (click)="editGameList()">Save</button>
+  <div
+    class="perfil-section d-flex align-items-center justify-content-center mt-4">
+    <img
+      src="{{ perfilPhoto }}"
+      alt="foto de perfil"
+      referrerpolicy="no-referrer"
+      class="rounded-circle me-2" />
+    <div class="d-flex flex-column">
+      <h1>{{ perfilName }}</h1>
+      <button class="btn btn-primary" *ngIf="!editing" (click)="editGameList()">
+        Edit Game List
+      </button>
+      <button
+        class="btn btn-primary"
+        *ngIf="editing"
+        (click)="editGameList(); refresh()">
+        Save
+      </button>
+    </div>
+  </div>
+
+  <div
+    class="perfil-informations d-flex mt-5 mb-1 align-items-center justify-content-around border-bottom">
+    <div class="gamelist-information mb-2">
+      Zerei
+      <span class="badge badge-gamelist ms-2">{{ gamesZerei.length }}</span>
+    </div>
+
+    <div class="gamelist-information mb-2">
+      Jogando
+      <span class="badge badge-gamelist ms-2">{{ gamesJogando.length }}</span>
+    </div>
+    <div class="gamelist-information mb-2">
+      Jogarei
+      <span class="badge badge-gamelist ms-2"> {{ gamesJogarei.length }}</span>
+    </div>
+  </div>
+
+  <h2 class="mt-5 text-center">Zerei</h2>
+  <div class="d-flex flex-wrap justify-content-center border-bottom" id="zerei">
+    <h3
+      class="d-flex justify-content-center align-items-center my-4"
+      *ngIf="gamesZerei.length === 0">
+      Nenhum jogo está listado.
+    </h3>
+    <div
+      class="card bg-dark text-white"
+      *ngFor="let game of gamesZerei; let i = index"
+      ng>
+      <i
+        class="bi bi-trash-fill"
+        *ngIf="editing"
+        (click)="deleteGame(game.id, i, gamesZerei)"></i>
+      <img
+        class="card-img-top"
+        src="{{ game.background_image }}"
+        alt="Card image cap" />
+      <div class="card-body d-flex flex-column align-items-center">
+        <div class="game-plataforms mb-3">
+          <img
+            *ngFor="let plataformGame of game.parent_platforms"
+            class="game-plataform"
+            src="assets/images/platforms/{{ plataformGame.platform.slug }}.svg"
+            alt="{{ plataformGame.platform.slug }}" />
         </div>
-        
-    </div>
-
-    <div class="perfil-informations d-flex mt-5 mb-1 align-items-center justify-content-around border-bottom">
-       
-        <div class="gamelist-information mb-2" >
-            Zerei <span class="badge badge-gamelist ms-2">{{ gamesZerei.length }}</span>
-          </div>
-       
-          <div class="gamelist-information mb-2">
-            Jogando <span class="badge badge-gamelist ms-2">{{ gamesJogando.length }}</span>
-          </div>
-          <div class="gamelist-information mb-2">
-            Jogarei <span class="badge badge-gamelist ms-2"> {{  gamesJogarei.length  }}</span>
-          </div>
-    </div>
-    
-   
-
-<h2 class="mt-5 text-center">Zerei</h2>
-<div class="d-flex flex-wrap justify-content-center border-bottom" id="zerei">
-    <div class="card bg-dark text-white" *ngFor="let game of gamesZerei; let i = index" ng>
-        <i class="bi bi-trash-fill" *ngIf="editing" (click)="deleteGame(game.id, i, gamesZerei)"></i>
-        <img class="card-img-top" src="{{ game.background_image }}" alt="Card image cap">
-        <div class="card-body d-flex flex-column align-items-center">
-            <div class="game-plataforms mb-3">
-                <img *ngFor="let plataformGame of game.parent_platforms" class="game-plataform"
-                src="assets/images/platforms/{{ plataformGame.platform.slug }}.svg"
-                alt="{{ plataformGame.platform.slug }}"/>
-            </div>
-            <h5 class="card-title" (click)="globalService.openGameDetails(game.id)"> {{ game.name }} </h5>
-            <div *ngIf="authService.loggedIn" class="card-footer mt-auto">
-                            
-                <i class="bi bi-award"  (click)="globalService.putZerei(game.id); globalService.openModal(template, game.id)"></i>
-                <i class="bi bi-controller" (click)="globalService.putJogando(game.id); globalService.openModal(template, game.id);"></i>
-                <i class="bi bi-bookmark-star" (click)="globalService.putJogarei(game.id); globalService.openModal(template, game.id)"></i>
-                
-            </div>
+        <h5 class="card-title" (click)="globalService.openGameDetails(game.id)">
+          {{ game.name }}
+        </h5>
+        <div *ngIf="authService.loggedIn" class="card-footer mt-auto">
+          <i
+            class="bi bi-award"
+            (click)="
+              globalService.putZerei(game.id);
+              globalService.openModal(template, game.id)
+            "></i>
+          <i
+            class="bi bi-controller"
+            (click)="
+              globalService.putJogando(game.id);
+              globalService.openModal(template, game.id)
+            "></i>
+          <i
+            class="bi bi-bookmark-star"
+            (click)="
+              globalService.putJogarei(game.id);
+              globalService.openModal(template, game.id)
+            "></i>
         </div>
+      </div>
     </div>
-</div>
+  </div>
 
-<h2 class="mt-5 text-center">Jogando</h2>
-<div class="d-flex flex-wrap justify-content-center border-bottom" id="Jogando">
-    <div class="card bg-dark text-white" *ngFor="let game of gamesJogando">
-        <i class="bi bi-trash-fill" *ngIf="editing" (click)="deleteGame(game.id, i, gamesJogando)" ></i>
-        <img class="card-img-top" src="{{ game.background_image }}" alt="Card image cap">
-        <div class="card-body d-flex flex-column align-items-center">
-            <div class="game-plataforms mb-3">
-                
-                <img *ngFor="let plataformGame of game.parent_platforms" class="game-plataform"
-                src="assets/images/platforms/{{ plataformGame.platform.slug }}.svg"
-                alt="{{ plataformGame.platform.slug }}"/>
-            </div>
-            <h5 class="card-title" (click)="globalService.openGameDetails(game.id)"> {{ game.name }} </h5>
-            <div *ngIf="authService.loggedIn" class="card-footer mt-auto">
-                            
-                <i class="bi bi-award"  (click)="globalService.putZerei(game.id); globalService.openModal(template, game.id)"></i>
-                <i class="bi bi-controller" (click)="globalService.putJogando(game.id); globalService.openModal(template, game.id);"></i>
-                <i class="bi bi-bookmark-star" (click)="globalService.putJogarei(game.id); globalService.openModal(template, game.id)"></i>
-                
-            </div>
+  <h2 class="mt-5 text-center">Jogando</h2>
+  <div
+    class="d-flex flex-wrap justify-content-center border-bottom"
+    id="Jogando">
+    <h3
+      class="d-flex justify-content-center align-items-center my-4"
+      *ngIf="gamesJogando.length === 0">
+      Nenhum jogo está listado.
+    </h3>
+    <div
+      class="card bg-dark text-white"
+      *ngFor="let game of gamesJogando; let i = index">
+      <i
+        class="bi bi-trash-fill"
+        *ngIf="editing"
+        (click)="deleteGame(game.id, i, gamesJogando)"></i>
+      <img
+        class="card-img-top"
+        src="{{ game.background_image }}"
+        alt="Card image cap" />
+      <div class="card-body d-flex flex-column align-items-center">
+        <div class="game-plataforms mb-3">
+          <img
+            *ngFor="let plataformGame of game.parent_platforms"
+            class="game-plataform"
+            src="assets/images/platforms/{{ plataformGame.platform.slug }}.svg"
+            alt="{{ plataformGame.platform.slug }}" />
         </div>
-    </div>
-</div>
-
-<h2 class="mt-5 text-center">Jogarei</h2>
-<div class="d-flex flex-wrap justify-content-center" id="Jogarei">
-    <div class="card bg-dark text-white" *ngFor="let game of gamesJogarei">
-        
-
-      
-         <i class="bi bi-trash-fill" *ngIf="editing" (click)="deleteGame(game.id, i, gamesJogarei)"></i>
-               
-       
-        <img class="card-img-top" src="{{ game.background_image }}" alt="Card image cap">
-       
-        <div class="card-body d-flex flex-column align-items-center">
-            <div class="game-plataforms mb-3">
-                <img *ngFor="let plataformGame of game.parent_platforms" class="game-plataform"
-                src="assets/images/platforms/{{ plataformGame.platform.slug }}.svg"
-                alt="{{ plataformGame.platform.slug }}"/>
-            </div>
-            <h5 class="card-title" (click)="globalService.openGameDetails(game.id)"> {{ game.name }} </h5>
-            <div *ngIf="authService.loggedIn" class="card-footer mt-auto">
-                            
-                <i class="bi bi-award"  (click)="globalService.putZerei(game.id); globalService.openModal(template, game.id)"></i>
-                <i class="bi bi-controller" (click)="globalService.putJogando(game.id); globalService.openModal(template, game.id)"></i>
-                <i class="bi bi-bookmark-star" (click)="globalService.putJogarei(game.id); globalService.openModal(template, game.id)"></i>
-                
-            </div>
+        <h5 class="card-title" (click)="globalService.openGameDetails(game.id)">
+          {{ game.name }}
+        </h5>
+        <div *ngIf="authService.loggedIn" class="card-footer mt-auto">
+          <i
+            class="bi bi-award"
+            (click)="
+              globalService.putZerei(game.id);
+              globalService.openModal(template, game.id)
+            "></i>
+          <i
+            class="bi bi-controller"
+            (click)="
+              globalService.putJogando(game.id);
+              globalService.openModal(template, game.id)
+            "></i>
+          <i
+            class="bi bi-bookmark-star"
+            (click)="
+              globalService.putJogarei(game.id);
+              globalService.openModal(template, game.id)
+            "></i>
         </div>
+      </div>
     </div>
-</div>
+  </div>
+
+  <h2 class="mt-5 text-center">Jogarei</h2>
+  <div class="d-flex flex-wrap justify-content-center" id="Jogarei">
+    <h3
+      class="d-flex justify-content-center align-items-center my-4"
+      *ngIf="gamesJogarei.length === 0">
+      Nenhum jogo está listado.
+    </h3>
+    <div
+      class="card bg-dark text-white"
+      *ngFor="let game of gamesJogarei; let i = index">
+      <i
+        class="bi bi-trash-fill"
+        *ngIf="editing"
+        (click)="deleteGame(game.id, i, gamesJogarei)"></i>
+
+      <img
+        class="card-img-top"
+        src="{{ game.background_image }}"
+        alt="Card image cap" />
+
+      <div class="card-body d-flex flex-column align-items-center">
+        <div class="game-plataforms mb-3">
+          <img
+            *ngFor="let plataformGame of game.parent_platforms"
+            class="game-plataform"
+            src="assets/images/platforms/{{ plataformGame.platform.slug }}.svg"
+            alt="{{ plataformGame.platform.slug }}" />
+        </div>
+        <h5 class="card-title" (click)="globalService.openGameDetails(game.id)">
+          {{ game.name }}
+        </h5>
+        <div *ngIf="authService.loggedIn" class="card-footer mt-auto">
+          <i
+            class="bi bi-award"
+            (click)="
+              globalService.putZerei(game.id);
+              globalService.openModal(template, game.id)
+            "></i>
+          <i
+            class="bi bi-controller"
+            (click)="
+              globalService.putJogando(game.id);
+              globalService.openModal(template, game.id)
+            "></i>
+          <i
+            class="bi bi-bookmark-star"
+            (click)="
+              globalService.putJogarei(game.id);
+              globalService.openModal(template, game.id)
+            "></i>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <ng-template #template>
-    <div class="modal-header">
-      <h4 class="modal-title pull-left">Jogo adicionado com sucesso
-        <i class="bi bi-check2-circle" style="color: #1DE9B7;"></i>
-      </h4>
-      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="globalService.modalRef?.hide();refresh()">
-        <span aria-hidden="true" class="visually-hidden">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      O jogo  {{globalService.nameGameAdd}} foi adicionado a sua lista de jogos no qual você  {{ globalService.listagem }}!
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="globalService.modalRef?.hide();refresh()">Ok</button>
-    </div>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">
+      Jogo adicionado com sucesso
+      <i class="bi bi-check2-circle" style="color: #1de9b7"></i>
+    </h4>
+    <button
+      type="button"
+      class="btn-close close pull-right"
+      aria-label="Close"
+      (click)="globalService.modalRef?.hide(); refresh()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    O jogo {{ globalService.nameGameAdd }} foi adicionado a sua lista de jogos
+    no qual você {{ globalService.listagem }}!
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="globalService.modalRef?.hide(); refresh()">
+      Ok
+    </button>
+  </div>
 </ng-template>

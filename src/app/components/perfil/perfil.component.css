@@ -53,7 +53,7 @@
 }
 
 .bi-trash-fill{
-    text-shadow: -0.8px 0 #252525, 0 0.8px #252525, 0.8px 0 #252525, 0 -0.8px #252525;
+    text-shadow: -0.5px 0 #252525, 0 0.5px #252525, 0.5px 0 #252525, 0 -0.5px #252525;
     left: 15.3rem;
     font-size: 20px;
     position: absolute;

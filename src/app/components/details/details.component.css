@@ -1,6 +1,6 @@
 .details {
-    padding: 0 0.8rem;
     max-width: 1200px;
+    padding: 0;
 }
 
 .game-header {
@@ -64,3 +64,6 @@
     color: #fff;
 }
 
+.game-achievement-description{
+    color: #4b545c;
+}

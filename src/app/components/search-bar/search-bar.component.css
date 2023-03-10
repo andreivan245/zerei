@@ -1,3 +1,7 @@
+.search-bar {
+    padding: 0;
+    max-width: 1200px;
+}
 
 a:hover {
     cursor: pointer;
@@ -6,12 +10,6 @@ a:hover {
 .form-control {
     width: 300px;
 }
-
-.container-fluid {
-    max-width: 1200px;
-    padding: 0;
-}
-
 
 .dropdown:hover .dropdown-menu {
     display: block;
@@ -32,4 +30,8 @@ a:hover {
 
 .logo {
     width: 6em;
+}
+
+.dropdown-menu {
+    --bs-dropdown-link-active-bg:#1DE9B7;
 }
