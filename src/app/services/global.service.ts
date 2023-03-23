@@ -18,6 +18,7 @@ export class GlobalService implements OnInit {
   listagem?: string;
   modalRef?: BsModalRef;
   nameGameAdd!: string;
+  page = 1;
 
   constructor(
     private router: Router,

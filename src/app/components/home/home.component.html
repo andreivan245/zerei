@@ -1,19 +1,60 @@
-<div class="filters px-3 px-sm-0">
-  <mat-form-field>
-    <mat-label>Classificar</mat-label>
-    <mat-select
-      panelClass="selecionado-classificar"
-      [(ngModel)]="sort"
-      (selectionChange)="getGames(sort); selectionNewSort()">
-      <mat-option value="name">Nome</mat-option>
-      <mat-option value="-released">Lançado</mat-option>
-      <mat-option value="-added">Adicionado</mat-option>
-      <mat-option value="-created">Criado</mat-option>
-      <mat-option value="-updated">Atualizado</mat-option>
-      <mat-option value="-rating">Classificação</mat-option>
-      <mat-option value="-metacritic">Metacritic</mat-option>
-    </mat-select>
-  </mat-form-field>
+<div class="dropdown filters px-3 px-sm-0">
+  <button
+    class="btn btn-dark dropdown-toggle"
+    type="button"
+    id="dropdownMenuButton"
+    data-toggle="dropdown"
+    aria-haspopup="true"
+    aria-expanded="false"
+    *ngIf="isSearch">
+    Classificar
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a
+      class="dropdown-item"
+      value="name"
+      (click)="sort = '-name'; getGames('-name'); selectionNewSort()"
+      >Nome</a
+    >
+    <a
+      class="dropdown-item"
+      value="-released"
+      (click)="sort = '-released'; getGames('-released'); selectionNewSort()"
+      >Lançado</a
+    >
+    <a
+      class="dropdown-item"
+      value="-added"
+      (click)="sort = '-added'; getGames('-added'); selectionNewSort()"
+      >Adicionado</a
+    >
+    <a
+      class="dropdown-item"
+      value="-created"
+      (click)="sort = '-created'; getGames('-created'); selectionNewSort()"
+      >Criado</a
+    >
+    <a
+      class="dropdown-item"
+      value="-updated"
+      (click)="sort = '-updated'; getGames('-updated'); selectionNewSort()"
+      >Atualizado</a
+    >
+    <a
+      class="dropdown-item"
+      value="-rating"
+      (click)="sort = '-rating'; getGames('-rating'); selectionNewSort()"
+      >Classificação</a
+    >
+    <a
+      class="dropdown-item"
+      value="-metacritic"
+      (click)="
+        sort = '-metacritic'; getGames('-metacritic'); selectionNewSort()
+      "
+      >Metacritic</a
+    >
+  </div>
 </div>
 
 <div class="container-fluid d-flex flex-wrap justify-content-center">
@@ -63,9 +104,15 @@
   <pagination
     class="pagination container-fluid d-flex justify-content-center my-2 px-3 px-sm-0"
     [totalItems]="totalPages"
+    previousText="&lsaquo;"
+    nextText="&rsaquo;"
+    firstText="&laquo;"
+    lastText="&raquo;"
     [rotate]="true"
     (pageChanged)="getPage($event)"
-    [maxSize]="6"></pagination>
+    [maxSize]="6">
+    ></pagination
+  >
 </div>
 
 <ng-template #template>

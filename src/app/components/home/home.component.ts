@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
   public numberPage: any = 1;
   public firstPage = true;
   public totalPages!: number;
+  public isSearch = true;
 
   constructor(
     private httpService: HttpService,
@@ -52,12 +53,16 @@ export class HomeComponent implements OnInit {
   }
 
   getGames(sort: string, search?: any): void {
+    console.log(search);
+    if (search != null) {
+      this.isSearch = false;
+    }
+
     this.activatedRoute.queryParamMap.subscribe(params => {
       if (params.get('page')) {
         this.numberPage = params.get('page');
       }
     });
-
     this.httpService
       .getGameList(sort, search, this.numberPage)
       .subscribe((gameList: APIResponse<Game>) => {
@@ -70,7 +75,6 @@ export class HomeComponent implements OnInit {
 
   getPage(event: any) {
     this.numberPage = event.page;
-    console.log(event);
     this.activatedRoute.queryParamMap.subscribe(params => {
       this.router.navigate(['/games'], {
         queryParams: {
@@ -79,6 +83,11 @@ export class HomeComponent implements OnInit {
           search: params.get('search'),
         },
       });
+    });
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
     });
   }
 }

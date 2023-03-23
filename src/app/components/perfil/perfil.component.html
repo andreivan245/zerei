@@ -9,13 +9,13 @@
     <div class="d-flex flex-column">
       <h1>{{ perfilName }}</h1>
       <button class="btn btn-primary" *ngIf="!editing" (click)="editGameList()">
-        Edit Game List
+        Editar lista de jogos
       </button>
       <button
         class="btn btn-primary"
         *ngIf="editing"
         (click)="editGameList(); refresh()">
-        Save
+        Salvar
       </button>
     </div>
   </div>

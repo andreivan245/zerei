@@ -26,4 +26,13 @@ export class SearchBarComponent {
   openPerfil(): void {
     this.router.navigate(['perfil']);
   }
+
+  allGames(): void {
+    this.router.navigate(['/games'], {
+      queryParams: {
+        page: '1',
+        ordering: '-added',
+      },
+    });
+  }
 }

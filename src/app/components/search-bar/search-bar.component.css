@@ -8,7 +8,7 @@ a:hover {
 }
 
 .form-control {
-    width: 300px;
+    width: 17rem;
 }
 
 .dropdown:hover .dropdown-menu {
@@ -35,3 +35,7 @@ a:hover {
 .dropdown-menu {
     --bs-dropdown-link-active-bg:#1DE9B7;
 }
+.form-control:focus {
+    border-color: #1DE9B7;
+    box-shadow: 0 0 0 0.2rem rgba(29, 233, 183, 0.25);
+} 

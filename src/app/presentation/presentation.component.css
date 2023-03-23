@@ -1,0 +1,62 @@
+
+
+.texts {
+    padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    
+}
+.tittle {
+    color: #fff;
+    
+}
+
+.subtittle {
+    color:#fff  ;
+    
+}
+.tittle-part{
+    color: #1DE9B7;
+}
+
+.bg-image {
+    background-image: url('../../assets/layered-waves-haikei.svg');
+    height: 75vh;
+    background-repeat: no-repeat;
+} 
+
+.btn-primary {
+    color: #212529;
+    border: none;
+    background-color: #fff;
+    width: 15rem;
+    height: 3rem;
+    margin: 0 auto;
+    
+}
+
+
+
+.btn-primary:hover, .card:hover {
+    transform: scale(1.1);
+    transition: all 0.5s;
+  }
+
+.second{
+    padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.second-text{
+    
+    width: 100%;
+}
+
+
+
+
+
+.card {
+    width: 18rem;
+}

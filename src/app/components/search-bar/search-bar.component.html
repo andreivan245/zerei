@@ -24,7 +24,7 @@
       class="collapse navbar-collapse px-3 px-sm-0"
       id="navbarSupportedContent">
       <!-- Left links -->
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav mb-2 mb-lg-0 w-auto">
         <li class="nav-item">
           <a
             class="nav-link active text-light"
@@ -35,40 +35,39 @@
           >
         </li>
         <li class="nav-item">
+          <a class="nav-link text-light" (click)="allGames()">Todos os jogos</a>
+        </li>
+        <li class="nav-item">
           <a
             class="nav-link text-light"
             (click)="openPerfil()"
             *ngIf="authService.loggedIn"
-            >Meus jogos</a
+            >Minha lista</a
           >
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-light">Sobre o projeto</a>
         </li>
       </ul>
       <!-- Left links -->
 
       <!-- Search form -->
-      <form class="d-flex input-group w-auto me-auto">
+      <div class="container d-flex p-0 w-auto flex-wrap">
         <input
           class="form-control"
-          type="search"
-          name="search"
           [(ngModel)]="search"
-          placeholder="Encontre mais de 800k de jogos"
-          aria-label="Search" />
-        <button class="btn btn-primary" type="submit" (click)="onSubmit()">
-          Pesquisar
+          placeholder="Encontre seus jogos"
+          aria-label="Search"
+          (keyup.enter)="onSubmit()" />
+        <button class="btn btn-primary ms-1" type="submit" (click)="onSubmit()">
+          <i class="bi bi-search"></i>
         </button>
-      </form>
+      </div>
 
-      <ul class="navbar-nav mt-2 mt-sm-0">
+      <ul class="navbar-nav mt-2 mt-sm-0 w-auto">
         <li class="nav-item mx-auto">
           <button
             *ngIf="!authService.loggedIn"
-            class="btn btn-primary"
+            class="btn btn-primary text-white"
             (click)="authService.GoogleAuth()">
-            Login com Google
+            <i class="bi bi-google me-1"></i> Login
           </button>
         </li>
 
@@ -92,12 +91,12 @@
             class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start"
             aria-labelledby="navbarDropdown">
             <li>
-              <a class="dropdown-item" (click)="openPerfil()">Meus jogos</a>
+              <a class="dropdown-item" (click)="openPerfil()">Minha lista</a>
             </li>
             <li>
               <hr class="dropdown-divider" />
             </li>
-            <li><a class="dropdown-item" href="#">Minha conta</a></li>
+
             <li><a class="dropdown-item" href="#">Ajude-me</a></li>
             <li>
               <a class="dropdown-item" (click)="authService.GoogleOut()"

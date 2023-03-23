@@ -9,6 +9,7 @@ import {
   redirectUnauthorizedTo,
   redirectLoggedInTo,
 } from '@angular/fire/compat/auth-guard';
+import { PresentationComponent } from './presentation/presentation.component';
 
 const redirectUnauthorizedToHome = () => redirectUnauthorizedTo(['']);
 const redirectLoggedInToAccount = () => redirectLoggedInTo(['perfil']);
@@ -16,7 +17,7 @@ const redirectLoggedInToAccount = () => redirectLoggedInTo(['perfil']);
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    component: PresentationComponent,
     data: { authGuardPipe: redirectLoggedInToAccount },
   },
   { path: 'games', component: HomeComponent },

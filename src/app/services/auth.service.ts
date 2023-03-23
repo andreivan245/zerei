@@ -28,7 +28,18 @@ export class AuthService {
   }
   // Sign in with Google
   GoogleAuth() {
-    return this.AuthLogin(new GoogleAuthProvider());
+    this.router.navigate(['/games'], {
+      queryParams: {
+        page: '1',
+        ordering: '-added',
+      },
+    });
+
+    if (!this.loggedIn) {
+      return this.AuthLogin(new GoogleAuthProvider());
+    } else {
+      return 0;
+    }
   }
 
   GoogleOut() {

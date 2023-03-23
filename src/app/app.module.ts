@@ -12,16 +12,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { GaugeModule } from 'angular-gauge';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatIconModule } from '@angular/material/icon';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
+
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { HomeComponent } from './components/home/home.component';
 import { HttpHeadersInterceptor } from './interceptors/http-headers.interceptor';
 import { HttpErrorsInterceptor } from './interceptors/http-errors.interceptor';
 import { DetailsComponent } from './components/details/details.component';
-import { NgxPaginationModule } from 'ngx-pagination';
+
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { AuthService } from './services/auth.service';
 import { environment } from 'src/environments/environment.prod';
@@ -32,6 +29,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { PresentationComponent } from './presentation/presentation.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +39,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     HomeComponent,
     DetailsComponent,
     PerfilComponent,
+    PresentationComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,11 +48,6 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     GaugeModule.forRoot(),
     HttpClientModule,
     FormsModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatTabsModule,
-    MatIconModule,
-    NgxPaginationModule,
     SocialLoginModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
@@ -61,6 +56,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     ModalModule,
     CarouselModule,
     PaginationModule,
+    BsDropdownModule.forRoot(),
   ],
   providers: [
     {
