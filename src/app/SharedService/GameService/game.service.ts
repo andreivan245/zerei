@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Game as GameDB } from './game';
+import { Game as GameDB } from 'src/app/services/SharedService/game';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { map } from 'rxjs/operators';
-import { Game } from '../models';
+import { Game } from 'src/app/models';
 
-import { HttpService } from '../services/http.service';
+import { HttpService } from 'src/app/services/HttpService/http.service';
 
 @Injectable({
   providedIn: 'root',

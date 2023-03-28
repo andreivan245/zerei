@@ -1,12 +1,9 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { APIResponse, Game } from 'src/app/models';
-import { HttpService } from 'src/app/services/http.service';
-import { AuthService } from 'src/app/services/auth.service';
-import { Game as GameDB } from 'src/app/shared/game';
-import { GameService } from 'src/app/shared/game.service';
-import { GameDataService } from 'src/app/shared/game-data.service';
-import { GlobalService } from 'src/app/services/global.service';
+import { HttpService } from 'src/app/services/HttpService/http.service';
+import { AuthService } from 'src/app/services/AuthService/auth.service';
+import { GlobalService } from 'src/app/services/GlobalService/global.service';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 @Component({
@@ -20,7 +17,6 @@ export class HomeComponent implements OnInit {
   public previousPage!: string;
   public nextPage!: string;
   public numberPage: any = 1;
-  public firstPage = true;
   public totalPages!: number;
   public isSearch = true;
 
@@ -32,12 +28,10 @@ export class HomeComponent implements OnInit {
     private globalService: GlobalService
   ) {}
 
-  ngOnInit(): void {
-    this.activatedRoute.queryParamMap.subscribe(params => {
+  async ngOnInit(): Promise<void> {
+    await this.activatedRoute.queryParamMap.subscribe(params => {
       this.getGames(this.sort, params.get('search'));
     });
-
-    this.globalService.ngOnInit();
   }
 
   selectionNewSort() {
@@ -53,7 +47,6 @@ export class HomeComponent implements OnInit {
   }
 
   getGames(sort: string, search?: any): void {
-    console.log(search);
     if (search != null) {
       this.isSearch = false;
     }
@@ -69,12 +62,13 @@ export class HomeComponent implements OnInit {
         this.games = gameList.results;
         this.nextPage = gameList.next;
         this.previousPage = gameList.previous;
-        this.totalPages = gameList.count;
+        this.totalPages = gameList.count / 2;
       });
   }
 
   getPage(event: any) {
     this.numberPage = event.page;
+
     this.activatedRoute.queryParamMap.subscribe(params => {
       this.router.navigate(['/games'], {
         queryParams: {

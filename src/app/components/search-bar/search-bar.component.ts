@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/AuthService/auth.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({

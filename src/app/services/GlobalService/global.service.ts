@@ -1,17 +1,17 @@
-import { Injectable, OnInit, TemplateRef } from '@angular/core';
+import { Injectable, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { GameService } from '../shared/game.service';
-import { AuthService } from './auth.service';
-import { Game as GameDB } from 'src/app/shared/game';
-import { GameDataService } from '../shared/game-data.service';
+import { GameService } from 'src/app/services/SharedService/GameService/game.service';
+import { AuthService } from 'src/app/services/AuthService/auth.service';
+import { Game as GameDB } from 'src/app/services/SharedService/game';
+import { GameDataService } from 'src/app/services/SharedService/GameDataService/game-data.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { HttpService } from 'src/app/services/http.service';
+import { HttpService } from 'src/app/services/HttpService/http.service';
 import { Game } from 'src/app/models';
 
 @Injectable({
   providedIn: 'root',
 })
-export class GlobalService implements OnInit {
+export class GlobalService {
   game!: GameDB;
   key!: string;
   action?: string;
@@ -28,9 +28,7 @@ export class GlobalService implements OnInit {
     private gameDataService: GameDataService,
     private modalService: BsModalService,
     private httpService: HttpService
-  ) {}
-
-  ngOnInit(): void {
+  ) {
     this.game = new GameDB();
     this.gameDataService.currentGame.subscribe(data => {
       if (data.game && data.key) {

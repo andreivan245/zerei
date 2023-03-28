@@ -3,13 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { DetailsComponent } from './components/details/details.component';
 import { HomeComponent } from './components/home/home.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
-
+import { PresentationComponent } from './components/presentation/presentation.component';
 import {
   AngularFireAuthGuard,
   redirectUnauthorizedTo,
   redirectLoggedInTo,
 } from '@angular/fire/compat/auth-guard';
-import { PresentationComponent } from './presentation/presentation.component';
 
 const redirectUnauthorizedToHome = () => redirectUnauthorizedTo(['']);
 const redirectLoggedInToAccount = () => redirectLoggedInTo(['perfil']);

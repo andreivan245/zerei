@@ -12,7 +12,6 @@
     object-position: 50% 0;
 }
 
-
 .game-description {
     display: flex;
     justify-content: center;
@@ -24,7 +23,6 @@
     flex-direction: column;
     width: 1200px;
 }
-
 
 .icons {
     height: 3rem;

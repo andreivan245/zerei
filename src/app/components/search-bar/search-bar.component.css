@@ -7,13 +7,17 @@ a:hover {
     cursor: pointer;
 }
 
+.logo {
+    width: 6em;
+}
+
 .form-control {
     width: 17rem;
 }
 
 .dropdown:hover .dropdown-menu {
     display: block;
-    margin-top: 0; /* remove the gap so it doesn't close */
+    margin-top: 0; 
 }
 
 .btn-primary {
@@ -28,13 +32,10 @@ a:hover {
     background-color: #212529;
 }
 
-.logo {
-    width: 6em;
-}
-
 .dropdown-menu {
     --bs-dropdown-link-active-bg:#1DE9B7;
 }
+
 .form-control:focus {
     border-color: #1DE9B7;
     box-shadow: 0 0 0 0.2rem rgba(29, 233, 183, 0.25);
