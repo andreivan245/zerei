@@ -1,28 +1,21 @@
 # Zerei
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.1.
+## Sobre
 
-## Development server
+Esse projeto se trata de uma apliacação web em Angular cujo sua principal função é de listagem de jogos, onde você pode criar a sua lista personalizada de games que você já jogou.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 🛠️ Funcionalidades
 
-## Code scaffolding
+- Sistema de autenticação com o Google
+- Busca de jogos
+- Listagem de jogos
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 🖥️ Tecnologias Utilizadas:
 
-## Build
+- Angular
+- Firebase
+- Bootstrap
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## 💁 Infomações Adicionais
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-# zerei
+O banco de dados de jogos utilizados foi o [RAWG](https://rawg.io/apidocs) que conta com mais de 800k de jogos.
