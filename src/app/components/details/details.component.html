@@ -12,26 +12,29 @@
         (click)="
           globalService.putZerei(game.id);
           globalService.openModal(template, game.id)
-        "></i>
+        "
+        title="Zerei"></i>
       <i
         class="bi bi-controller mt-1"
         (click)="
           globalService.putJogando(game.id);
           globalService.openModal(template, game.id)
-        "></i>
+        "
+        title="Jogando"></i>
       <i
         class="bi bi-bookmark-star mt-1"
         (click)="
           globalService.putJogarei(game.id);
           globalService.openModal(template, game.id)
-        "></i>
+        "
+        title="Jogarei"></i>
     </div>
   </div>
   <div class="game-description mt-3">
     <div class="game-content">
       <div class="game-header mt-3 d-flex align-items-center">
         <h1 class="game-header-title me-2" translate="no">{{ game.name }}</h1>
-        <span class="game-metacritc">
+        <span class="game-metacritc" title="Metacritic">
           <span
             class="metascore rounded-1 bg-success"
             *ngIf="game.metacritic >= 75">

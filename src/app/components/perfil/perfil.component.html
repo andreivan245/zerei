@@ -62,7 +62,8 @@
             *ngFor="let plataformGame of game.parent_platforms"
             class="game-plataform"
             src="assets/images/platforms/{{ plataformGame.platform.slug }}.svg"
-            alt="{{ plataformGame.platform.slug }}" />
+            alt="{{ plataformGame.platform.slug }}"
+            title="{{ plataformGame.platform.slug.toUpperCase() }}" />
         </div>
         <h5 class="card-title" (click)="globalService.openGameDetails(game.id)">
           {{ game.name }}
@@ -73,19 +74,22 @@
             (click)="
               globalService.putZerei(game.id);
               globalService.openModal(template, game.id)
-            "></i>
+            "
+            title="Zerei"></i>
           <i
             class="bi bi-controller"
             (click)="
               globalService.putJogando(game.id);
               globalService.openModal(template, game.id)
-            "></i>
+            "
+            title="Jogando"></i>
           <i
             class="bi bi-bookmark-star"
             (click)="
               globalService.putJogarei(game.id);
               globalService.openModal(template, game.id)
-            "></i>
+            "
+            title="Jogarei"></i>
         </div>
       </div>
     </div>

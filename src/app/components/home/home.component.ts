@@ -11,26 +11,28 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   public sort = '-added';
   public games: Array<Game> = [];
   public previousPage!: string;
   public nextPage!: string;
-  public numberPage: any = 1;
+  //public numberPage: any = 1;
   public totalPages!: number;
   public isSearch = true;
-
+  public currentPage = 1;
   constructor(
     private httpService: HttpService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private authService: AuthService,
     private globalService: GlobalService
-  ) {}
-
-  async ngOnInit(): Promise<void> {
-    await this.activatedRoute.queryParamMap.subscribe(params => {
-      this.getGames(this.sort, params.get('search'));
+  ) {
+    console.log(this.currentPage);
+    this.activatedRoute.queryParamMap.subscribe(params => {
+      this.getGames(this.sort, params.get('search'), this.currentPage);
+      if (params.get('page') != '1') {
+        this.currentPage = parseInt(params.get('page')!);
+      }
     });
   }
 
@@ -46,18 +48,13 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  getGames(sort: string, search?: any): void {
+  getGames(sort: string, search?: any, page?: any): void {
     if (search != null) {
       this.isSearch = false;
     }
 
-    this.activatedRoute.queryParamMap.subscribe(params => {
-      if (params.get('page')) {
-        this.numberPage = params.get('page');
-      }
-    });
     this.httpService
-      .getGameList(sort, search, this.numberPage)
+      .getGameList(sort, search, page)
       .subscribe((gameList: APIResponse<Game>) => {
         this.games = gameList.results;
         this.nextPage = gameList.next;
@@ -67,12 +64,10 @@ export class HomeComponent implements OnInit {
   }
 
   getPage(event: any) {
-    this.numberPage = event.page;
-
     this.activatedRoute.queryParamMap.subscribe(params => {
       this.router.navigate(['/games'], {
         queryParams: {
-          page: this.numberPage,
+          page: event.page,
           ordering: this.sort,
           search: params.get('search'),
         },

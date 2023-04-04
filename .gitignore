@@ -19,6 +19,10 @@ yarn-error.log
 *.launch
 .settings/
 *.sublime-workspace
+.prettierrc
+.prettierignore
+.eslintrc.json
+.firebase.json
 
 # Visual Studio Code
 .vscode/*
@@ -42,6 +46,3 @@ testem.log
 Thumbs.db
 
 
-.prettierrc
-.prettierignore
-.eslintrc.json
