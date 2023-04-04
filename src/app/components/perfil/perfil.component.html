@@ -123,7 +123,10 @@
             src="assets/images/platforms/{{ plataformGame.platform.slug }}.svg"
             alt="{{ plataformGame.platform.slug }}" />
         </div>
-        <h5 class="card-title" (click)="globalService.openGameDetails(game.id)">
+        <h5
+          class="card-title"
+          (click)="globalService.openGameDetails(game.id)"
+          translate="no">
           {{ game.name }}
         </h5>
         <div *ngIf="authService.loggedIn" class="card-footer mt-auto">
